@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="nextNEOpi Python 重构研发规划概览，涵盖首期交付、计算模块、算法试点与验证方法。">
+  <title>nextNEOpi 研发规划概览</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f6f8f7;
+      --white: #fff;
+      --ink: #172c35;
+      --muted: #465e65;
+      --rule: #d7e2df;
+      --teal: #076354;
+      --teal-light: #e5f2ed;
+      --hero: #112c36;
+      --hero-text: #c2dcd9;
+      --mint: #89e6c9;
+      --radius: 16px;
+      --width: 1168px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.7 Inter, system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, p { margin: 0; }
+    h1, h2, h3 { line-height: 1.25; text-wrap: balance; }
+    a { color: var(--teal); text-underline-offset: .23em; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible { outline: 3px solid #187c66; outline-offset: 4px; border-radius: 3px; }
+    section[id] { scroll-margin-top: 24px; }
+    .shell { width: min(calc(100% - 64px), var(--width)); margin-inline: auto; }
+    .skip { position: absolute; left: 1rem; top: -5rem; padding: .5rem 1rem; background: var(--white); z-index: 1; }
+    .skip:focus { top: 1rem; }
+    .site-header { background: var(--white); border-bottom: 1px solid var(--rule); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px 30px; min-height: 70px; }
+    .wordmark { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 760; text-decoration: none; }
+    .wordmark-mark {
+      display: grid;
+      place-items: center;
+      width: 29px;
+      height: 29px;
+      background: var(--teal);
+      color: #fff;
+      border-radius: 8px;
+      font: 750 16px/1 Inter, system-ui, sans-serif;
+    }
+    .nav { display: flex; flex-wrap: wrap; gap: 5px 24px; font-size: .87rem; }
+    .nav a { color: var(--muted); text-decoration: none; padding-block: 5px; }
+    .nav a:hover { color: var(--teal); text-decoration: underline; }
+
+    .hero {
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(144, 223, 201, .075) 1px, transparent 1px) right top / 32px 32px,
+        linear-gradient(rgba(144, 223, 201, .075) 1px, transparent 1px) right top / 32px 32px,
+        linear-gradient(115deg, var(--hero) 38%, #19433f 100%);
+      padding-block: clamp(50px, 7.2vw, 91px);
+    }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(290px, .85fr); gap: clamp(30px, 5vw, 80px); align-items: center; }
+    .status { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; color: var(--mint); font-size: .82rem; font-weight: 700; }
+    .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+    h1 { font-size: clamp(2.2rem, 5.25vw, 4.45rem); letter-spacing: -.035em; }
+    .hero-copy > p { max-width: 39em; color: var(--hero-text); font-size: clamp(1rem, 1.65vw, 1.15rem); margin-top: 22px; }
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 27px;
+      padding: 8px 15px;
+      background: var(--mint);
+      color: #102f30;
+      font-weight: 750;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    .hero-link:hover { background: #a8f1da; text-decoration: underline; }
+    .hero-link:focus-visible { outline-color: #fff; }
+    .hero-panel {
+      min-width: 0;
+      padding: clamp(21px, 3vw, 34px);
+      background: rgba(11, 31, 37, .56);
+      border: 1px solid rgba(183, 230, 216, .31);
+      border-radius: 20px;
+    }
+    .hero-panel h2 { color: var(--hero-text); font-size: .88rem; }
+    .hero-panel .deliverable { margin-top: 12px; font-size: clamp(1.14rem, 2.35vw, 1.6rem); font-weight: 760; line-height: 1.45; }
+    .deliverable > span { display: inline-block; white-space: nowrap; }
+    .deliverable .arrow { color: var(--mint); padding-inline: .16em; }
+    .metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; margin: 21px 0 0; padding-top: 17px; border-top: 1px solid rgba(183, 230, 216, .27); }
+    .metrics div { display: flex; flex-direction: column-reverse; gap: 3px; }
+    .metrics dt { color: var(--hero-text); font-size: .78rem; }
+    .metrics dd { margin: 0; color: var(--mint); font-weight: 750; font-size: 1.85rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+
+    .content { padding-block: 55px 66px; }
+    .section + .section { margin-top: clamp(46px, 6vw, 74px); }
+    .section-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px 24px; margin-bottom: 20px; }
+    .section h2 { font-size: clamp(1.55rem, 3.2vw, 2.1rem); letter-spacing: -.025em; }
+    .section h3 { font-size: 1.08rem; }
+    .section-link { font-size: .87rem; font-weight: 680; }
+    .lead { color: var(--muted); max-width: 67em; margin-bottom: 17px; }
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 12px;
+    }
+    .pipeline li { position: relative; min-width: 0; padding: 18px 15px 17px; background: var(--white); border: 1px solid var(--rule); border-top: 3px solid #70afa1; border-radius: 11px; }
+    .pipeline li:not(:last-child)::after {
+      content: "›";
+      position: absolute;
+      inset-inline-end: -11px;
+      top: 42%;
+      color: var(--teal);
+      font-size: 1.18rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .pipeline strong { display: block; line-height: 1.4; }
+    .pipeline p { margin-top: 5px; color: var(--muted); font-size: .86rem; }
+    .checkpoint { display: grid; grid-template-columns: 1fr 1fr; margin-top: 16px; border: 1px solid #c6ded5; border-radius: 12px; background: var(--teal-light); overflow: hidden; }
+    .checkpoint > div { padding: 15px 18px; }
+    .checkpoint > div + div { border-left: 1px solid #c6ded5; }
+    .checkpoint strong { display: block; color: var(--teal); font-size: .88rem; }
+    .checkpoint p { margin-top: 4px; font-size: .91rem; }
+    .followup { margin-top: 12px; font-size: .87rem; color: var(--muted); }
+
+    .structure { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr); align-items: start; gap: 18px; }
+    .module-list { list-style: none; margin: 0; padding: 0; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--white); overflow: hidden; }
+    .module-list li { display: grid; grid-template-columns: 32px minmax(0, .95fr) minmax(0, 1fr); align-items: start; gap: 12px; padding: 12px 16px; }
+    .module-list li + li { border-top: 1px solid var(--rule); }
+    .module-letter {
+      display: grid; place-items: center; width: 28px; height: 26px; background: var(--teal-light);
+      color: var(--teal); font-size: .78rem; font-weight: 760; border-radius: 6px;
+    }
+    .module-list strong { font-size: .95rem; }
+    .module-list p { color: var(--muted); font-size: .87rem; }
+    .platform { padding: 23px 22px 22px; background: #eaf0f1; border: 1px solid #d2dfe1; border-radius: var(--radius); }
+    .platform dl { margin: 16px 0 0; }
+    .platform dt { font-weight: 720; font-size: .91rem; }
+    .platform dd { margin: 3px 0 14px; color: var(--muted); font-size: .88rem; }
+    .platform dd:last-child { margin-bottom: 0; }
+    .platform .section-link { display: inline-block; margin-top: 16px; }
+
+    .pilots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
+    .pilot, .verify { background: var(--white); border: 1px solid var(--rule); border-radius: var(--radius); padding: 21px; }
+    .pilot-type { display: block; color: var(--teal); font-size: .8rem; font-weight: 720; margin-bottom: 8px; }
+    .pilot p, .verify p { color: var(--muted); margin-top: 8px; font-size: .92rem; }
+    .pilot h3 { overflow-wrap: anywhere; }
+    .pilot-note { font-size: .88rem; color: var(--muted); margin-top: 12px; }
+    .verification { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+    .verify { border-left: 4px solid #69a99b; }
+    .verify .section-link { display: inline-block; margin-top: 11px; }
+
+    .site-footer { background: #edf2f0; border-top: 1px solid var(--rule); }
+    .footer-inner { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 22px; padding-block: 23px; font-size: .87rem; color: var(--muted); }
+    .footer-inner p { margin-right: auto; }
+    @media (max-width: 900px) {
+      .structure { grid-template-columns: 1fr; }
+      .platform dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 7px 18px; }
+      .platform dd { margin: 0; }
+    }
+    @media (max-width: 730px) {
+      .shell { width: calc(100% - 36px); }
+      .header-inner { align-items: flex-start; flex-direction: column; gap: 6px; padding-block: 12px; }
+      .nav { gap: 2px 17px; }
+      .hero-grid, .pilots, .verification { grid-template-columns: 1fr; }
+      .hero { padding-block: 40px; }
+      .hero-copy > p { margin-top: 15px; }
+      .hero-panel { max-width: 510px; }
+      .content { padding-block: 39px 47px; }
+      .pipeline { grid-template-columns: 1fr; gap: 8px; }
+      .pipeline li { padding: 12px 15px; border-top-width: 1px; border-inline-start: 3px solid #70afa1; }
+      .pipeline li:not(:last-child)::after { content: none; }
+      .checkpoint { grid-template-columns: 1fr; }
+      .checkpoint > div + div { border-left: none; border-top: 1px solid #c6ded5; }
+    }
+    @media (max-width: 430px) {
+      .module-list li { grid-template-columns: 30px minmax(0, 1fr); gap: 2px 10px; }
+      .module-list p { grid-column: 2; }
+      .platform dl { grid-template-columns: 1fr; gap: 2px; }
+      .platform dd + dt { margin-top: 9px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media print {
+      body, .hero, .hero-panel, .checkpoint, .platform, .site-footer { background: #fff; color: #171717; }
+      .hero-copy > p, .hero-panel h2, .status, .metrics dt, .metrics dd, .deliverable .arrow { color: #171717; }
+      .metrics, .hero-panel { border-color: #bbb; }
+      .site-header, .hero-link { display: none; }
+      .shell { width: 100%; }
+      .hero, .content { padding-block: 14pt; }
+      .section + .section { margin-top: 22pt; }
+      .section-header, .pipeline li, .module-list li, .pilot, .verify { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="wordmark" href="#top"><span class="wordmark-mark" aria-hidden="true">N</span>nextNEOpi</a>
+      <nav class="nav" aria-label="页面目录">
+        <a href="#delivery">首期交付</a>
+        <a href="#modules">研发模块</a>
+        <a href="#pilots">算法试点</a>
+        <a href="#verification">验证方法</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="hero">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <span class="status">设计草案</span>
+          <h1>nextNEOpi<br>研发规划概览</h1>
+          <p>将现有 Nextflow 肿瘤新抗原流水线逐步迁移到 Python。明确每一步的输入和输出，让算法可以独立比较、替换和复验。</p>
+          <a class="hero-link" href="#delivery">查看首期交付 <span aria-hidden="true">↓</span></a>
+        </div>
+        <aside class="hero-panel" aria-labelledby="phase-one">
+          <h2 id="phase-one">首期目标</h2>
+          <p class="deliverable"><span>配对 WES DNA <span class="arrow">→</span></span> <span>常规新抗原报告</span></p>
+          <dl class="metrics">
+            <div><dt>计算功能组</dt><dd>7</dd></div>
+            <div><dt>实现模块</dt><dd>14</dd></div>
+            <div><dt>算法单元</dt><dd>32</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+
+    <div class="shell content">
+      <section id="delivery" class="section" aria-labelledby="delivery-title">
+        <div class="section-header">
+          <h2 id="delivery-title">首期交付</h2>
+          <a class="section-link" href="08_api_reference/html/design/07_migration/incremental-roadmap.html">增量迁移路线</a>
+        </div>
+        <p class="lead">首期聚焦同一病例的肿瘤与正常全外显子测序（WES），从原始数据到候选结果跑通一条完整流程。</p>
+        <ol class="pipeline" aria-label="配对 WES DNA 到常规新抗原报告">
+          <li><strong>样本接入</strong><p>读取配对 FASTQ 或 BAM</p></li>
+          <li><strong>DNA 比对</strong><p>质控、比对、重复标记与重校准</p></li>
+          <li><strong>变异与注释</strong><p>调用器共识、转录本注释与定相</p></li>
+          <li><strong>候选预测</strong><p>结合 HLA 分型与记录来源的纯度，运行 pVACseq</p></li>
+          <li><strong>科学报告</strong><p>汇总候选及运行证据</p></li>
+        </ol>
+        <div class="checkpoint">
+          <div><strong>首轮科学对照</strong><p>比较 pVACseq 常规候选全量表和过滤表。</p></div>
+          <div><strong>完整首期交付</strong><p>增加候选聚合、初版报告，以及本地和 Slurm 运行验收。</p></div>
+        </div>
+        <p class="followup">后续接入 WGS、RNA 表达、融合与异常剪接、完整的拷贝数与克隆性分析、突变负荷和免疫受体库。</p>
+      </section>
+
+      <section id="modules" class="section" aria-labelledby="modules-title">
+        <div class="section-header">
+          <h2 id="modules-title">研发模块</h2>
+          <a class="section-link" href="08_api_reference/html/design/02_modules/module-map.html">模块与接口对应关系</a>
+        </div>
+        <div class="structure">
+          <ul class="module-list" aria-label="七个计算功能组">
+            <li><span class="module-letter">A</span><strong>测序准备与 DNA 比对</strong><p>读段质控、比对和分阶段 BAM</p></li>
+            <li><span class="module-letter">B</span><strong>DNA 变异与注释</strong><p>变异共识、注释与定相证据</p></li>
+            <li><span class="module-letter">C</span><strong>HLA 分型</strong><p>等位基因、配对和分型来源</p></li>
+            <li><span class="module-letter">D</span><strong>肿瘤特征</strong><p>拷贝数、纯度、克隆性和突变负荷</p></li>
+            <li><span class="module-letter">E</span><strong>RNA 表达与事件</strong><p>表达量、融合与异常剪接证据</p></li>
+            <li><span class="module-letter">F</span><strong>候选与呈递预测</strong><p>突变肽、结合与呈递分数</p></li>
+            <li><span class="module-letter">G</span><strong>免疫证据分析</strong><p>参考蛋白匹配、免疫原性与受体库</p></li>
+          </ul>
+          <aside class="platform" aria-labelledby="platform-title">
+            <h3 id="platform-title">运行平台</h3>
+            <dl>
+              <dt>接口与部署</dt><dd>提供 Python SDK 和命令行，支持本地与 Slurm。</dd>
+              <dt>执行恢复</dt><dd>缓存已完成任务，支持失败重试、断点续跑和病例隔离。</dd>
+              <dt>结果可追溯</dt><dd>记录容器、模型、参考资源、实际配置和每份结果的来源。</dd>
+            </dl>
+            <a class="section-link" href="08_api_reference/html/design/01_architecture/architecture-overview.html">查看总体架构</a>
+          </aside>
+        </div>
+      </section>
+
+      <section id="pilots" class="section" aria-labelledby="pilots-title">
+        <div class="section-header">
+          <h2 id="pilots-title">首批算法试点</h2>
+          <a class="section-link" href="08_api_reference/html/design/02_modules/second-layer-algorithm-inventory.html">完整算法清单</a>
+        </div>
+        <div class="pilots">
+          <article class="pilot">
+            <span class="pilot-type">DNA 比对</span>
+            <h3>BWA-MEM2</h3>
+            <p>固定 reads、参考和后处理，比较比对结果、下游变异与候选，再记录耗时和内存。</p>
+          </article>
+          <article class="pilot">
+            <span class="pilot-type">HLA 分型</span>
+            <h3>SpecHLA</h3>
+            <p>用独立分型真值比较各位点准确率、无结果率，以及下游可评分的 HLA 覆盖。</p>
+          </article>
+          <article class="pilot">
+            <span class="pilot-type">结合与呈递预测</span>
+            <h3>NetMHCpan 4.2<br>NetMHCIIpan 4.3</h3>
+            <p>固定同一批肽与 HLA 组合，分别用结合实验和免疫肽组数据评估输出。</p>
+          </article>
+        </div>
+        <p class="pilot-note">三项试点均待执行。每项通过独立配置与现有方法并行对照。</p>
+      </section>
+
+      <section id="verification" class="section" aria-labelledby="verification-title">
+        <div class="section-header"><h2 id="verification-title">验证方法</h2></div>
+        <div class="verification">
+          <article class="verify">
+            <h3>迁移后结果是否一致</h3>
+            <p>固定旧版工具、参考、模型和阈值。回放中间产物，比较候选身份、过滤去留和约定容差内的数值变化。</p>
+            <a class="section-link" href="08_api_reference/html/design/05_testing/acceptance-test-matrix.html#首轮科学对照">首轮验收范围</a>
+          </article>
+          <article class="verify">
+            <h3>替代方法是否值得采用</h3>
+            <p>用独立真值比较性能，记录支持范围、未评分原因和下游候选变化。结合、呈递和免疫原性分别使用对应的实验数据。</p>
+            <a class="section-link" href="08_api_reference/html/design/05_testing/scientific-equivalence-plan.html#首批可选算法评测">科学验证计划</a>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <p>nextNEOpi · Python 重构研发规划</p>
+      <a href="08_api_reference/html/design/README.html#从哪里开始">完整规划文档</a>
+      <a href="#top">返回顶部</a>
+    </div>
+  </footer>
+</body>
+</html>

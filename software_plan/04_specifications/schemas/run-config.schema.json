@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nextneopi.example/schemas/run-config-v1.json",
+  "title": "nextNEOpi RunConfig v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "workflow", "input", "reference", "methods", "policies", "implementation_configs", "execution", "output"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recipe", "assay"],
+      "properties": {
+        "recipe": {"$ref": "#/$defs/id"},
+        "assay": {"enum": ["WES", "WGS"]},
+        "optional_sections": {"$ref": "#/$defs/idSet"}
+      }
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manifest", "manifest_format"],
+      "properties": {
+        "manifest": {"type": "string", "minLength": 1},
+        "manifest_format": {"$ref": "#/$defs/id"},
+        "case_ids": {"type": "array", "items": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+$"}, "uniqueItems": true}
+      }
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bundle", "capture_kit"],
+      "properties": {
+        "bundle": {"type": "string", "minLength": 1},
+        "capture_kit": {"type": ["string", "null"]}
+      }
+    },
+    "methods": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "read_materializer": {"$ref": "#/$defs/id"},
+        "read_trimmer": {"$ref": "#/$defs/id"},
+        "read_qc": {"$ref": "#/$defs/id"},
+        "dna_aligner": {"$ref": "#/$defs/id"},
+        "alignment_postprocessor": {"$ref": "#/$defs/id"},
+        "base_recalibrator": {"$ref": "#/$defs/id"},
+        "alignment_qc": {"$ref": "#/$defs/id"},
+        "somatic_callers": {"$ref": "#/$defs/idList"},
+        "somatic_sv_caller": {"$ref": "#/$defs/nullableId"},
+        "normal_germline_context": {"$ref": "#/$defs/id"},
+        "consequence_annotator": {"$ref": "#/$defs/id"},
+        "phase_context": {"$ref": "#/$defs/id"},
+        "hla_evidence_extractor": {"$ref": "#/$defs/id"},
+        "hla_typers": {"$ref": "#/$defs/idList"},
+        "canonical_neoantigen": {"$ref": "#/$defs/id"},
+        "somatic_sv_normalizer": {"$ref": "#/$defs/nullableId"},
+        "copy_number": {"$ref": "#/$defs/nullableId"},
+        "ccf_estimator": {"$ref": "#/$defs/nullableId"},
+        "rna_alignment_quantification": {"$ref": "#/$defs/nullableId"},
+        "fusion_caller": {"$ref": "#/$defs/nullableId"},
+        "splice_event_caller": {"$ref": "#/$defs/nullableId"},
+        "fusion_neoantigen": {"$ref": "#/$defs/nullableId"},
+        "splice_neoantigen": {"$ref": "#/$defs/nullableId"},
+        "self_similarity": {"$ref": "#/$defs/nullableId"},
+        "immunogenicity_scorers": {"$ref": "#/$defs/idList"},
+        "immune_repertoire": {"$ref": "#/$defs/nullableId"}
+      }
+    },
+    "policies": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "variant_normalization": {"$ref": "#/$defs/variantNormalization"},
+        "somatic_consensus": {"$ref": "#/$defs/somaticConsensus"},
+        "phase_fallback": {"enum": ["fail", "annotation_only"]},
+        "hla_resolution": {"$ref": "#/$defs/hlaResolution"},
+        "purity": {"$ref": "#/$defs/purity"},
+        "tmb": {"$ref": "#/$defs/tmb"},
+        "rna": {"$ref": "#/$defs/rna"},
+        "fusion_dna_evidence": {"enum": ["required", "optional", "disabled"]},
+        "unsupported_protocol": {"enum": ["fail", "skip_with_reason"]},
+        "report": {"$ref": "#/$defs/reportPolicy"}
+      }
+    },
+    "implementation_configs": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z][a-z0-9_.-]*$"},
+      "additionalProperties": {"type": "object"},
+      "description": "Each value is additionally validated by the selected plugin implementation_config_schema."
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["backend", "profile", "container_runtime", "scatter_count", "retry"],
+      "properties": {
+        "backend": {"enum": ["local", "slurm"]},
+        "profile": {"$ref": "#/$defs/id"},
+        "container_runtime": {"const": "apptainer"},
+        "scatter_count": {"type": "integer", "minimum": 1},
+        "retry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["max_attempts", "resource_multiplier"],
+          "properties": {
+            "max_attempts": {"type": "integer", "minimum": 1, "maximum": 10},
+            "resource_multiplier": {"type": "number", "minimum": 1, "maximum": 4}
+          }
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["uri", "qc_report_formats", "scientific_report_formats", "include_provenance"],
+      "properties": {
+        "uri": {"type": "string", "minLength": 1},
+        "qc_report_formats": {"$ref": "#/$defs/reportFormats"},
+        "scientific_report_formats": {"$ref": "#/$defs/reportFormats"},
+        "include_provenance": {"type": "boolean"}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"workflow": {"properties": {"assay": {"const": "WES"}}, "required": ["assay"]}}},
+      "then": {"properties": {"reference": {"properties": {"capture_kit": {"type": "string", "minLength": 1}}}}}
+    }
+  ],
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_.-]*$"},
+    "nullableId": {"anyOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]},
+    "idList": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+    "idSet": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}, "default": []},
+    "variantNormalization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["left_align", "decompose_multiallelic", "normalization_version"],
+      "properties": {
+        "left_align": {"type": "boolean"},
+        "decompose_multiallelic": {"type": "boolean"},
+        "normalization_version": {"type": "string", "minLength": 1}
+      }
+    },
+    "somaticConsensus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["implementation", "strategy", "primary", "minimum_callers", "on_failed_confirming_caller", "preserve_primary_representation"],
+      "properties": {
+        "implementation": {"$ref": "#/$defs/id"},
+        "strategy": {"const": "primary_confirmed"},
+        "primary": {"$ref": "#/$defs/id"},
+        "minimum_callers": {"type": "integer", "minimum": 2},
+        "on_failed_confirming_caller": {"enum": ["fail", "continue_if_minimum_available"]},
+        "preserve_primary_representation": {"type": "boolean"}
+      }
+    },
+    "hlaResolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy", "required_mhc_classes", "allow_rna_completion"],
+      "properties": {
+        "strategy": {"type": "string", "minLength": 1},
+        "required_mhc_classes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["I", "II"]}},
+        "allow_rna_completion": {"type": "boolean"}
+      }
+    },
+    "purity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["providers", "configured_value", "on_failure"],
+      "properties": {
+        "providers": {"$ref": "#/$defs/idList"},
+        "configured_value": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "on_failure": {"enum": ["fail", "skip_optional"]}
+      }
+    },
+    "tmb": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metrics", "min_depth", "unit"],
+      "properties": {
+        "metrics": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["all", "coding", "clonal"]}},
+        "min_depth": {"type": "integer", "minimum": 0},
+        "min_base_quality": {"type": "integer", "minimum": 0},
+        "unit": {"const": "mutations_per_mb"}
+      }
+    },
+    "rna": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["protocol", "expression_unit"],
+      "properties": {
+        "protocol": {"enum": ["full_length", "three_prime_tag"]},
+        "expression_unit": {"enum": ["TPM"]},
+        "strandedness": {"enum": ["auto", "unstranded", "forward", "reverse"]}
+      }
+    },
+    "reportPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "optional_failure": {"enum": ["record", "fail_case"]},
+        "include_native_outputs": {"type": "boolean"}
+      }
+    },
+    "reportFormats": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["json", "tsv", "html"]}}
+  }
+}

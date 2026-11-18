@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nextneopi.example/schemas/artifact-v1.json",
+  "title": "nextNEOpi ArtifactRef v1",
+  "description": "A committed artifact. Non-materialized result states are represented by ResultEnvelope, not by fake artifacts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "metadata_schema_version",
+    "data_schema_version",
+    "artifact_id",
+    "kind",
+    "uri",
+    "media_type",
+    "checksum",
+    "state",
+    "producer",
+    "parameter_digest",
+    "parents",
+    "created_at"
+  ],
+  "properties": {
+    "metadata_schema_version": {"const": 1},
+    "data_schema_version": {"$ref": "#/$defs/semver"},
+    "artifact_id": {"type": "string", "format": "uuid"},
+    "kind": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+    "uri": {"type": "string", "minLength": 1},
+    "media_type": {"type": "string", "minLength": 1},
+    "checksum": {"$ref": "#/$defs/digest"},
+    "state": {"enum": ["MATERIALIZED", "EMPTY"]},
+    "case_id": {"type": ["string", "null"], "pattern": "^[A-Za-z0-9_.-]+$"},
+    "sample_id": {"type": ["string", "null"], "pattern": "^[A-Za-z0-9_.-]+$"},
+    "role": {"type": ["string", "null"], "enum": ["TUMOR_DNA", "NORMAL_DNA", "TUMOR_RNA", null]},
+    "assay": {"type": ["string", "null"], "enum": ["WES", "WGS", null]},
+    "reference": {
+      "anyOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["assembly", "dictionary_digest", "coordinate_convention"],
+          "properties": {
+            "assembly": {"type": "string", "minLength": 1},
+            "dictionary_digest": {"$ref": "#/$defs/digest"},
+            "coordinate_convention": {"type": "string", "minLength": 1}
+          }
+        }
+      ]
+    },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capability_id", "implementation_id", "implementation_version", "container_digest"],
+      "properties": {
+        "capability_id": {"type": "string", "pattern": "^IF-[A-Z]+-[0-9]{3}$"},
+        "implementation_id": {"type": "string", "pattern": "^[a-z][a-z0-9_.-]*$"},
+        "implementation_version": {"$ref": "#/$defs/semver"},
+        "container_digest": {
+          "anyOf": [
+            {"type": "null"},
+            {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}
+          ]
+        }
+      }
+    },
+    "parameter_digest": {"$ref": "#/$defs/digest"},
+    "parents": {"type": "array", "items": {"type": "string", "format": "uuid"}, "uniqueItems": true},
+    "companion_artifacts": {"type": "array", "items": {"type": "string", "format": "uuid"}, "uniqueItems": true, "default": []},
+    "reason": {"type": ["string", "null"]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "published_uri": {"type": ["string", "null"]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"state": {"const": "EMPTY"}}, "required": ["state"]},
+      "then": {"required": ["reason"], "properties": {"reason": {"type": "string", "minLength": 1}}}
+    }
+  ],
+  "$defs": {
+    "semver": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$"},
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "value"],
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "value": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    }
+  }
+}

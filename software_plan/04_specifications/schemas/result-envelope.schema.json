@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nextneopi.example/schemas/result-envelope-v1.json",
+  "title": "nextNEOpi ResultEnvelope v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["metadata_schema_version", "status", "value", "reason", "provenance_id"],
+  "properties": {
+    "metadata_schema_version": {"const": 1},
+    "status": {"enum": ["MATERIALIZED", "EMPTY", "NOT_REQUESTED", "SKIPPED_UNSUPPORTED", "FAILED"]},
+    "value": {},
+    "reason": {
+      "anyOf": [
+        {"type": "null"},
+        {"$ref": "#/$defs/resultReason"}
+      ]
+    },
+    "provenance_id": {"type": "string", "format": "uuid"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"enum": ["MATERIALIZED", "EMPTY"]}}, "required": ["status"]},
+      "then": {"properties": {"value": {"not": {"type": "null"}}}}
+    },
+    {
+      "if": {"properties": {"status": {"const": "EMPTY"}}, "required": ["status"]},
+      "then": {"properties": {"reason": {"$ref": "#/$defs/resultReason"}}}
+    },
+    {
+      "if": {"properties": {"status": {"enum": ["NOT_REQUESTED", "SKIPPED_UNSUPPORTED", "FAILED"]}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "value": {"type": "null"},
+          "reason": {"$ref": "#/$defs/resultReason"}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "resultReason": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message"],
+      "properties": {
+        "code": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+        "message": {"type": "string", "minLength": 1},
+        "details": {"type": "object", "additionalProperties": true, "default": {}}
+      }
+    }
+  }
+}

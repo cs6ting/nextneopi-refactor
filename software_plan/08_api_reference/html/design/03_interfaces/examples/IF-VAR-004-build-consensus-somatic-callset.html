@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="nextNEOpi Reference API: IF-VAR-004 BuildConsensusSomaticCallset 接口文档样例">
+  <title>IF-VAR-004 BuildConsensusSomaticCallset 接口文档样例 — nextNEOpi Reference API</title>
+  <link rel="stylesheet" href="../../../_static/api.css">
+  <script defer src="../../../_static/api.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到正文</a>
+  <header class="site-header">
+    <a class="brand" href="../../../index.html"><span class="brand-mark">nN</span><span><strong>nextNEOpi</strong><small>Reference API</small></span></a>
+    <div class="header-meta"><span class="version-badge">Design v0.2</span><a href="../../../_sources/03_interfaces/examples/IF-VAR-004-build-consensus-somatic-callset.md">查看源文档</a></div>
+  </header>
+  <div class="site-grid">
+    <aside class="sidebar" aria-label="API navigation">
+      <label class="search-label" for="api-search">搜索</label>
+      <input id="api-search" type="search" placeholder="Filter pages…" autocomplete="off">
+      <nav><section class="nav-group"><h2>Reference</h2><ul><li data-nav-item data-search="reference api 08_api_reference/readme.md"><a class="nav-link" href="../../../index.html">Reference API</a></li><li data-nav-item data-search="api overview 08_api_reference/api-overview.md"><a class="nav-link" href="../../../api-overview.html">API overview</a></li><li data-nav-item data-search="api conventions 08_api_reference/api-conventions.md"><a class="nav-link" href="../../../api-conventions.html">API conventions</a></li><li data-nav-item data-search="api stability 08_api_reference/stability.md"><a class="nav-link" href="../../../stability.html">API stability</a></li><li data-nav-item data-search="package layout 08_api_reference/package-layout.md"><a class="nav-link" href="../../../package-layout.html">Package layout</a></li><li data-nav-item data-search="typed edge matrix 08_api_reference/typed-edge-matrix.md"><a class="nav-link" href="../../../typed-edge-matrix.html">Typed edge matrix</a></li><li data-nav-item data-search="implementation matrix 08_api_reference/implementation-matrix.md"><a class="nav-link" href="../../../implementation-matrix.html">Implementation matrix</a></li></ul></section><section class="nav-group"><h2>Python API</h2><ul><li data-nav-item data-search="nextneopi 08_api_reference/nextneopi.md"><a class="nav-link" href="../../../nextneopi.html">nextneopi</a></li><li data-nav-item data-search="nextneopi.config 08_api_reference/nextneopi.config.md"><a class="nav-link" href="../../../nextneopi.config.html">nextneopi.config</a></li><li data-nav-item data-search="nextneopi.models 08_api_reference/nextneopi.models.md"><a class="nav-link" href="../../../nextneopi.models.html">nextneopi.models</a></li><li data-nav-item data-search="nextneopi.application 08_api_reference/nextneopi.application.md"><a class="nav-link" href="../../../nextneopi.application.html">nextneopi.application</a></li><li data-nav-item data-search="nextneopi.ports 08_api_reference/nextneopi.ports.md"><a class="nav-link" href="../../../nextneopi.ports.html">nextneopi.ports</a></li><li data-nav-item data-search="nextneopi.plugins 08_api_reference/nextneopi.plugins.md"><a class="nav-link" href="../../../nextneopi.plugins.html">nextneopi.plugins</a></li><li data-nav-item data-search="nextneopi.workflows 08_api_reference/nextneopi.workflows.md"><a class="nav-link" href="../../../nextneopi.workflows.html">nextneopi.workflows</a></li><li data-nav-item data-search="nextneopi.errors 08_api_reference/errors.md"><a class="nav-link" href="../../../errors.html">nextneopi.errors</a></li><li data-nav-item data-search="type index 08_api_reference/type-index.md"><a class="nav-link" href="../../../type-index.html">Type index</a></li></ul></section><section class="nav-group"><h2>Scientific capabilities</h2><ul><li data-nav-item data-search="input_reference 08_api_reference/capabilities/input_reference.md"><a class="nav-link" href="../../../capabilities/input_reference.html">input_reference</a></li><li data-nav-item data-search="reads_qc 08_api_reference/capabilities/reads_qc.md"><a class="nav-link" href="../../../capabilities/reads_qc.html">reads_qc</a></li><li data-nav-item data-search="alignment 08_api_reference/capabilities/alignment.md"><a class="nav-link" href="../../../capabilities/alignment.html">alignment</a></li><li data-nav-item data-search="variants 08_api_reference/capabilities/variants.md"><a class="nav-link" href="../../../capabilities/variants.html">variants</a></li><li data-nav-item data-search="annotation 08_api_reference/capabilities/annotation_phasing.md"><a class="nav-link" href="../../../capabilities/annotation_phasing.html">annotation</a></li><li data-nav-item data-search="hla 08_api_reference/capabilities/hla.md"><a class="nav-link" href="../../../capabilities/hla.html">hla</a></li><li data-nav-item data-search="copy_number 08_api_reference/capabilities/copy_number.md"><a class="nav-link" href="../../../capabilities/copy_number.html">copy_number</a></li><li data-nav-item data-search="ccf_tmb 08_api_reference/capabilities/ccf_tmb.md"><a class="nav-link" href="../../../capabilities/ccf_tmb.html">ccf_tmb</a></li><li data-nav-item data-search="rna 08_api_reference/capabilities/rna.md"><a class="nav-link" href="../../../capabilities/rna.html">rna</a></li><li data-nav-item data-search="events 08_api_reference/capabilities/fusion_splicing.md"><a class="nav-link" href="../../../capabilities/fusion_splicing.html">events</a></li><li data-nav-item data-search="neoantigens 08_api_reference/capabilities/neoantigens.md"><a class="nav-link" href="../../../capabilities/neoantigens.html">neoantigens</a></li><li data-nav-item data-search="immunity 08_api_reference/capabilities/immunogenicity_repertoire.md"><a class="nav-link" href="../../../capabilities/immunogenicity_repertoire.html">immunity</a></li><li data-nav-item data-search="reporting 08_api_reference/capabilities/reporting.md"><a class="nav-link" href="../../../capabilities/reporting.html">reporting</a></li></ul></section><section class="nav-group"><h2>Guides</h2><ul><li data-nav-item data-search="quickstart 08_api_reference/examples/quickstart.md"><a class="nav-link" href="../../../examples/quickstart.html">Quickstart</a></li><li data-nav-item data-search="implement a plugin 08_api_reference/examples/implement-plugin.md"><a class="nav-link" href="../../../examples/implement-plugin.html">Implement a plugin</a></li></ul></section><section class="nav-group"><h2>Overview</h2><ul><li data-nav-item data-search="nextneopi python 重构设计文档 readme.md"><a class="nav-link" href="../../README.html">nextNEOpi Python 重构设计文档</a></li></ul></section><section class="nav-group"><h2>Requirements</h2><ul><li data-nav-item data-search="功能需求 00_requirements/functional-requirements.md"><a class="nav-link" href="../../00_requirements/functional-requirements.html">功能需求</a></li><li data-nav-item data-search="术语表 00_requirements/glossary.md"><a class="nav-link" href="../../00_requirements/glossary.html">术语表</a></li><li data-nav-item data-search="非功能需求 00_requirements/non-functional-requirements.md"><a class="nav-link" href="../../00_requirements/non-functional-requirements.html">非功能需求</a></li><li data-nav-item data-search="范围与目标 00_requirements/scope-and-goals.md"><a class="nav-link" href="../../00_requirements/scope-and-goals.html">范围与目标</a></li><li data-nav-item data-search="需求追踪矩阵 00_requirements/traceability-matrix.md"><a class="nav-link" href="../../00_requirements/traceability-matrix.html">需求追踪矩阵</a></li></ul></section><section class="nav-group"><h2>Architecture &amp; ADRs</h2><ul><li data-nav-item data-search="总体架构 01_architecture/architecture-overview.md"><a class="nav-link" href="../../01_architecture/architecture-overview.html">总体架构</a></li><li data-nav-item data-search="工件与数据模型 01_architecture/artifact-and-data-model.md"><a class="nav-link" href="../../01_architecture/artifact-and-data-model.html">工件与数据模型</a></li><li data-nav-item data-search="配置架构 01_architecture/configuration-architecture.md"><a class="nav-link" href="../../01_architecture/configuration-architecture.html">配置架构</a></li><li data-nav-item data-search="adr-001：自研系统采用 python 端口/适配器架构 01_architecture/decisions/adr-001-python-architecture.md"><a class="nav-link" href="../../01_architecture/decisions/ADR-001-python-architecture.html">ADR-001：自研系统采用 Python 端口/适配器架构</a></li><li data-nav-item data-search="adr-002：执行引擎由 executionbackend 隔离 01_architecture/decisions/adr-002-execution-backend.md"><a class="nav-link" href="../../01_architecture/decisions/ADR-002-execution-backend.html">ADR-002：执行引擎由 ExecutionBackend 隔离</a></li><li data-nav-item data-search="adr-003：使用 pypa entry points 发现插件 01_architecture/decisions/adr-003-plugin-discovery.md"><a class="nav-link" href="../../01_architecture/decisions/ADR-003-plugin-discovery.html">ADR-003：使用 PyPA entry points 发现插件</a></li><li data-nav-item data-search="adr-004：项目自有 typed artifact 与内容寻址缓存 01_architecture/decisions/adr-004-artifact-and-cache.md"><a class="nav-link" href="../../01_architecture/decisions/ADR-004-artifact-and-cache.html">ADR-004：项目自有 typed artifact 与内容寻址缓存</a></li><li data-nav-item data-search="adr-005：第三方工具采用 digest 固定的离线容器 01_architecture/decisions/adr-005-container-strategy.md"><a class="nav-link" href="../../01_architecture/decisions/ADR-005-container-strategy.html">ADR-005：第三方工具采用 digest 固定的离线容器</a></li><li data-nav-item data-search="部署与容器 01_architecture/deployment-and-containers.md"><a class="nav-link" href="../../01_architecture/deployment-and-containers.html">部署与容器</a></li><li data-nav-item data-search="领域模型 01_architecture/domain-model.md"><a class="nav-link" href="../../01_architecture/domain-model.html">领域模型</a></li><li data-nav-item data-search="provenance 与可观察性 01_architecture/provenance-and-observability.md"><a class="nav-link" href="../../01_architecture/provenance-and-observability.html">Provenance 与可观察性</a></li><li data-nav-item data-search="安全与许可证 01_architecture/security-and-licenses.md"><a class="nav-link" href="../../01_architecture/security-and-licenses.html">安全与许可证</a></li><li data-nav-item data-search="工作流运行时 01_architecture/workflow-runtime.md"><a class="nav-link" href="../../01_architecture/workflow-runtime.html">工作流运行时</a></li></ul></section><section class="nav-group"><h2>Module map</h2><ul><li data-nav-item data-search="mod-01 输入与 manifest 02_modules/mod-01-input-and-manifest.md"><a class="nav-link" href="../../02_modules/MOD-01-input-and-manifest.html">MOD-01 输入与 Manifest</a></li><li data-nav-item data-search="mod-02 参考资源与区间 02_modules/mod-02-reference-and-intervals.md"><a class="nav-link" href="../../02_modules/MOD-02-reference-and-intervals.html">MOD-02 参考资源与区间</a></li><li data-nav-item data-search="mod-03 reads 预处理与 qc 02_modules/mod-03-read-preprocessing-and-qc.md"><a class="nav-link" href="../../02_modules/MOD-03-read-preprocessing-and-qc.html">MOD-03 Reads 预处理与 QC</a></li><li data-nav-item data-search="mod-04 dna 比对 02_modules/mod-04-dna-alignment.md"><a class="nav-link" href="../../02_modules/MOD-04-dna-alignment.html">MOD-04 DNA 比对</a></li><li data-nav-item data-search="mod-05 体细胞变异 02_modules/mod-05-somatic-variants.md"><a class="nav-link" href="../../02_modules/MOD-05-somatic-variants.html">MOD-05 体细胞变异</a></li><li data-nav-item data-search="mod-06 注释与相位 02_modules/mod-06-annotation-and-phasing.md"><a class="nav-link" href="../../02_modules/MOD-06-annotation-and-phasing.html">MOD-06 注释与相位</a></li><li data-nav-item data-search="mod-07 hla 分型 02_modules/mod-07-hla-typing.md"><a class="nav-link" href="../../02_modules/MOD-07-hla-typing.html">MOD-07 HLA 分型</a></li><li data-nav-item data-search="mod-08 拷贝数、纯度与倍性 02_modules/mod-08-copy-number-and-purity.md"><a class="nav-link" href="../../02_modules/MOD-08-copy-number-and-purity.html">MOD-08 拷贝数、纯度与倍性</a></li><li data-nav-item data-search="mod-09 ccf 与 tmb 02_modules/mod-09-ccf-and-tmb.md"><a class="nav-link" href="../../02_modules/MOD-09-ccf-and-tmb.html">MOD-09 CCF 与 TMB</a></li><li data-nav-item data-search="mod-10 rna 比对与表达 02_modules/mod-10-rna-expression.md"><a class="nav-link" href="../../02_modules/MOD-10-rna-expression.html">MOD-10 RNA 比对与表达</a></li><li data-nav-item data-search="mod-11 融合与异常剪接 02_modules/mod-11-fusion-and-splicing.md"><a class="nav-link" href="../../02_modules/MOD-11-fusion-and-splicing.html">MOD-11 融合与异常剪接</a></li><li data-nav-item data-search="mod-12 新抗原预测 02_modules/mod-12-neoantigen-prediction.md"><a class="nav-link" href="../../02_modules/MOD-12-neoantigen-prediction.html">MOD-12 新抗原预测</a></li><li data-nav-item data-search="mod-13 免疫原性与免疫组库 02_modules/mod-13-immunogenicity-and-repertoire.md"><a class="nav-link" href="../../02_modules/MOD-13-immunogenicity-and-repertoire.html">MOD-13 免疫原性与免疫组库</a></li><li data-nav-item data-search="mod-14 报告 02_modules/mod-14-reporting.md"><a class="nav-link" href="../../02_modules/MOD-14-reporting.html">MOD-14 报告</a></li><li data-nav-item data-search="nextneopi 第一层功能拆分与验证方案 02_modules/first-layer-functional-design.md"><a class="nav-link" href="../../02_modules/first-layer-functional-design.html">nextNEOpi 第一层功能拆分与验证方案</a></li><li data-nav-item data-search="模块地图 02_modules/module-map.md"><a class="nav-link" href="../../02_modules/module-map.html">模块地图</a></li><li data-nav-item data-search="nextneopi 第二层算法清单与替换评估 02_modules/second-layer-algorithm-inventory.md"><a class="nav-link" href="../../02_modules/second-layer-algorithm-inventory.html">nextNEOpi 第二层算法清单与替换评估</a></li></ul></section><section class="nav-group"><h2>Interface contracts</h2><ul><li data-nav-item data-search="artifactstore 契约 03_interfaces/artifact-store-contract.md"><a class="nav-link" href="../artifact-store-contract.html">ArtifactStore 契约</a></li><li data-nav-item data-search="capability 模型 03_interfaces/capability-model.md"><a class="nav-link" href="../capability-model.html">Capability 模型</a></li><li data-nav-item data-search="cnv、纯度、ccf 与 tmb 接口 03_interfaces/cnv-ccf-tmb-interfaces.md"><a class="nav-link" href="../cnv-ccf-tmb-interfaces.html">CNV、纯度、CCF 与 TMB 接口</a></li><li data-nav-item data-search="if-var-004 buildconsensussomaticcallset 接口文档样例 03_interfaces/examples/if-var-004-build-consensus-somatic-callset.md"><a class="nav-link active" href="IF-VAR-004-build-consensus-somatic-callset.html" aria-current="page">IF-VAR-004 BuildConsensusSomaticCallset 接口文档样例</a></li><li data-nav-item data-search="executionbackend 契约 03_interfaces/execution-backend-contract.md"><a class="nav-link" href="../execution-backend-contract.html">ExecutionBackend 契约</a></li><li data-nav-item data-search="hla 接口 03_interfaces/hla-interfaces.md"><a class="nav-link" href="../hla-interfaces.html">HLA 接口</a></li><li data-nav-item data-search="输入与参考接口 03_interfaces/input-reference-interfaces.md"><a class="nav-link" href="../input-reference-interfaces.html">输入与参考接口</a></li><li data-nav-item data-search="接口约定 03_interfaces/interface-conventions.md"><a class="nav-link" href="../interface-conventions.html">接口约定</a></li><li data-nav-item data-search="新抗原、免疫原性与免疫组库接口 03_interfaces/neoantigen-interfaces.md"><a class="nav-link" href="../neoantigen-interfaces.html">新抗原、免疫原性与免疫组库接口</a></li><li data-nav-item data-search="插件契约 03_interfaces/plugin-contract.md"><a class="nav-link" href="../plugin-contract.html">插件契约</a></li><li data-nav-item data-search="reads、qc 与 dna 比对接口 03_interfaces/qc-alignment-interfaces.md"><a class="nav-link" href="../qc-alignment-interfaces.html">Reads、QC 与 DNA 比对接口</a></li><li data-nav-item data-search="报告接口 03_interfaces/reporting-interfaces.md"><a class="nav-link" href="../reporting-interfaces.html">报告接口</a></li><li data-nav-item data-search="rna、融合与剪接接口 03_interfaces/rna-fusion-splicing-interfaces.md"><a class="nav-link" href="../rna-fusion-splicing-interfaces.html">RNA、融合与剪接接口</a></li><li data-nav-item data-search="变异、注释与相位接口 03_interfaces/variant-interfaces.md"><a class="nav-link" href="../variant-interfaces.html">变异、注释与相位接口</a></li></ul></section><section class="nav-group"><h2>Specifications &amp; schemas</h2><ul><li data-nav-item data-search="cli 与 python sdk 规范 04_specifications/cli-and-sdk-specification.md"><a class="nav-link" href="../../04_specifications/cli-and-sdk-specification.html">CLI 与 Python SDK 规范</a></li><li data-nav-item data-search="配置规范 04_specifications/configuration-specification.md"><a class="nav-link" href="../../04_specifications/configuration-specification.html">配置规范</a></li><li data-nav-item data-search="错误与状态模型 04_specifications/error-and-status-model.md"><a class="nav-link" href="../../04_specifications/error-and-status-model.html">错误与状态模型</a></li><li data-nav-item data-search="输出布局 04_specifications/output-layout.md"><a class="nav-link" href="../../04_specifications/output-layout.html">输出布局</a></li><li data-nav-item data-search="provenance 规范 04_specifications/provenance-specification.md"><a class="nav-link" href="../../04_specifications/provenance-specification.html">Provenance 规范</a></li><li data-nav-item data-search="资源与容器模型 04_specifications/resource-model.md"><a class="nav-link" href="../../04_specifications/resource-model.html">资源与容器模型</a></li></ul></section><section class="nav-group"><h2>Testing &amp; equivalence</h2><ul><li data-nav-item data-search="验收测试矩阵 05_testing/acceptance-test-matrix.md"><a class="nav-link" href="../../05_testing/acceptance-test-matrix.html">验收测试矩阵</a></li><li data-nav-item data-search="契约测试计划 05_testing/contract-test-plan.md"><a class="nav-link" href="../../05_testing/contract-test-plan.html">契约测试计划</a></li><li data-nav-item data-search="集成测试计划 05_testing/integration-test-plan.md"><a class="nav-link" href="../../05_testing/integration-test-plan.html">集成测试计划</a></li><li data-nav-item data-search="性能与可靠性测试计划 05_testing/performance-test-plan.md"><a class="nav-link" href="../../05_testing/performance-test-plan.html">性能与可靠性测试计划</a></li><li data-nav-item data-search="科学等价测试计划 05_testing/scientific-equivalence-plan.md"><a class="nav-link" href="../../05_testing/scientific-equivalence-plan.html">科学等价测试计划</a></li><li data-nav-item data-search="slurm 与容器测试计划 05_testing/slurm-and-container-test-plan.md"><a class="nav-link" href="../../05_testing/slurm-and-container-test-plan.html">Slurm 与容器测试计划</a></li><li data-nav-item data-search="系统测试计划 05_testing/system-test-plan.md"><a class="nav-link" href="../../05_testing/system-test-plan.html">系统测试计划</a></li><li data-nav-item data-search="测试数据策略 05_testing/test-data-strategy.md"><a class="nav-link" href="../../05_testing/test-data-strategy.html">测试数据策略</a></li><li data-nav-item data-search="测试策略 05_testing/test-strategy.md"><a class="nav-link" href="../../05_testing/test-strategy.html">测试策略</a></li><li data-nav-item data-search="单元测试计划 05_testing/unit-test-plan.md"><a class="nav-link" href="../../05_testing/unit-test-plan.html">单元测试计划</a></li></ul></section><section class="nav-group"><h2>Quality gates</h2><ul><li data-nav-item data-search="python 编码规范 06_quality/coding-standards.md"><a class="nav-link" href="../../06_quality/coding-standards.html">Python 编码规范</a></li><li data-nav-item data-search="definition of done 06_quality/definition-of-done.md"><a class="nav-link" href="../../06_quality/definition-of-done.html">Definition of Done</a></li><li data-nav-item data-search="插件评审清单 06_quality/plugin-review-checklist.md"><a class="nav-link" href="../../06_quality/plugin-review-checklist.html">插件评审清单</a></li><li data-nav-item data-search="质量门禁 06_quality/quality-gates.md"><a class="nav-link" href="../../06_quality/quality-gates.html">质量门禁</a></li><li data-nav-item data-search="发布就绪清单 06_quality/release-readiness-checklist.md"><a class="nav-link" href="../../06_quality/release-readiness-checklist.html">发布就绪清单</a></li></ul></section><section class="nav-group"><h2>Migration</h2><ul><li data-nav-item data-search="兼容与科学连续性策略 07_migration/compatibility-strategy.md"><a class="nav-link" href="../../07_migration/compatibility-strategy.html">兼容与科学连续性策略</a></li><li data-nav-item data-search="当前代码到目标架构映射 07_migration/current-to-target-mapping.md"><a class="nav-link" href="../../07_migration/current-to-target-mapping.html">当前代码到目标架构映射</a></li><li data-nav-item data-search="增量迁移路线 07_migration/incremental-roadmap.md"><a class="nav-link" href="../../07_migration/incremental-roadmap.html">增量迁移路线</a></li><li data-nav-item data-search="nextflow 退役条件 07_migration/nextflow-retirement-criteria.md"><a class="nav-link" href="../../07_migration/nextflow-retirement-criteria.html">Nextflow 退役条件</a></li><li data-nav-item data-search="风险登记 07_migration/risk-register.md"><a class="nav-link" href="../../07_migration/risk-register.html">风险登记</a></li></ul></section></nav>
+    </aside>
+    <main id="main-content" class="main-content">
+      <div class="breadcrumbs"><a href="../../../index.html">Reference API</a><span class="crumb-separator">/</span>03_interfaces/examples/IF-VAR-004-build-consensus-somatic-callset.md</div>
+      <span class="context-badge">Design context</span>
+      <article class="api-content"><h1 id="if-var-004-buildconsensussomaticcallset-接口文档样例">IF-VAR-004 <code>BuildConsensusSomaticCallset</code> 接口文档样例</h1>
+<blockquote>
+<p>本文是 nextNEOpi 子功能接口文档的完整样例，可作为其他 capability 文档的编写模板。它描述目标 Python 接口，不表示代码已经实现。</p>
+</blockquote>
+<h2 id="1-接口元数据">1. 接口元数据</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interface ID</td>
+<td><code>IF-VAR-004</code></td>
+</tr>
+<tr>
+<td>Python name</td>
+<td><code>BuildConsensusSomaticCallset</code></td>
+</tr>
+<tr>
+<td>Contract version</td>
+<td><code>1.0.0</code></td>
+</tr>
+<tr>
+<td>Status</td>
+<td><code>Proposed</code></td>
+</tr>
+<tr>
+<td>Owning module</td>
+<td><a href="../../02_modules/MOD-05-somatic-variants.html"><code>MOD-05 Somatic Variants</code></a></td>
+</tr>
+<tr>
+<td>Upstream interfaces</td>
+<td><code>IF-VAR-001 CallSomaticSmallVariants</code>、<code>IF-VAR-003 NormalizeSomaticCallset</code></td>
+</tr>
+<tr>
+<td>Downstream interfaces</td>
+<td><code>IF-ANN-001 AnnotateVariantConsequences</code>、<code>IF-CCF-001 EstimateCCF</code>、<code>IF-TMB-001 ComputeTMB</code></td>
+</tr>
+<tr>
+<td>First recipe</td>
+<td><code>wes_dna_canonical</code></td>
+</tr>
+<tr>
+<td>Requirement IDs</td>
+<td><code>REQ-FUN-008</code>、<code>REQ-FUN-009</code>、<code>REQ-FUN-010</code></td>
+</tr>
+<tr>
+<td>Risk IDs</td>
+<td><code>RISK-011</code>、<code>RISK-014</code>、<code>RISK-015</code></td>
+</tr>
+<tr>
+<td>Primary owner</td>
+<td>Somatic Variant Domain Owner</td>
+</tr>
+<tr>
+<td>Required reviewers</td>
+<td>Bioinformatics、Python Architecture、Test Engineering</td>
+</tr>
+</tbody>
+</table></div>
+<p>相关约定：</p>
+<ul>
+<li><a href="../interface-conventions.html">接口约定</a></li>
+<li><a href="../capability-model.html">Capability 模型</a></li>
+<li><a href="../../04_specifications/error-and-status-model.html">错误与状态模型</a></li>
+<li><a href="../../../assets/artifact.schema.json">工件 Schema</a></li>
+<li><a href="../../05_testing/scientific-equivalence-plan.html">科学等价测试计划</a></li>
+</ul>
+<h2 id="2-目的">2. 目的</h2>
+<p>将两个或多个已经规范化的体细胞变异 callset 按版本化科学策略合并为高置信 callset。首个策略 <code>primary_confirmed</code> 保留 primary caller 的记录表达，只接受至少被一个 confirming caller 支持的同一规范 allele，并为每个 allele 保存 support provenance。</p>
+<p>该接口解决的是<strong>跨 caller 科学共识</strong>，而不是第三方 caller 的执行、VCF 格式修复或 VEP 注释。</p>
+<h2 id="3-科学语义">3. 科学语义</h2>
+<h3 id="31-primary_confirmed-定义">3.1 <code>primary_confirmed</code> 定义</h3>
+<p>设：</p>
+<ul>
+<li><code>P</code> 为 primary caller 的规范 allele 集合；</li>
+<li><code>C₁ … Cₙ</code> 为成功完成的 confirming caller 规范 allele 集合；</li>
+<li><code>support(v)</code> 为包含 allele <code>v</code> 的 caller 集合，并始终包含 primary；</li>
+<li><code>minimum_callers &gt;= 2</code>。</li>
+</ul>
+<p>则高置信集合为：</p>
+<pre class="text"><code>HC = {v ∈ P | |support(v)| &gt;= minimum_callers}</code></pre>
+<p>默认 <code>minimum_callers = 2</code>，即 primary 加至少一个 confirming caller。</p>
+<h3 id="32-必须保持的行为">3.2 必须保持的行为</h3>
+<ol type="1">
+<li>输出候选只来自 primary callset。</li>
+<li>confirming-only allele 不进入高置信输出。</li>
+<li>caller 支持必须基于规范 allele identity，而不是只比较 <code>CHROM:POS</code>。</li>
+<li>primary 原生表达可以作为输出 VCF 表达基础，但必须附规范 identity 和 support metadata。</li>
+<li>每个输出 allele 必须记录支持它的 caller ID 与 implementation version。</li>
+<li>未确认的 primary allele 可输出到独立 supplemental artifact，不能混入 confirmed callset。</li>
+<li>caller <code>FAILED</code> 不能当作“该 caller 不支持此 allele”。</li>
+<li>caller <code>EMPTY</code> 表示成功但没有 allele，可以作为可用 caller 参与可用性判断，但不会提供 allele support。</li>
+</ol>
+<h3 id="33-明确非职责">3.3 明确非职责</h3>
+<p>本接口不负责：</p>
+<ul>
+<li>调用 Mutect2、VarScan2、Strelka2 或 Mutect1；</li>
+<li>将 caller 原生 FORMAT 转换为 <code>AD/DP/AF</code>；</li>
+<li>left normalization、多等位拆分或 contig alias 修复；</li>
+<li>决定哪个 caller 应作为 primary；该值由配置 policy 指定；</li>
+<li>VEP 注释、phase、CCF 或 TMB；</li>
+<li>判断不同 caller 方法在科学上等价。</li>
+</ul>
+<p>上述前置转换属于 <code>IF-VAR-003 NormalizeSomaticCallset</code>。</p>
+<h2 id="4-当前代码映射">4. 当前代码映射</h2>
+<p>现有实现位于 <code>bin/make_hc_vcf.py</code>，由 <code>nextNEOpi.nf</code> 中高置信 VCF 流程调用。</p>
+<p>现有脚本已经表达了以下核心意图：</p>
+<ul>
+<li>primary 记录仅在任一 confirming reader 同步到记录时进入 confirmed VCF；</li>
+<li>输出 <code>VariantCalledBy</code>；</li>
+<li>未确认 primary 记录写入另一个 VCF；</li>
+<li>对 VarScan2/Strelka2 做部分 FORMAT 转换。</li>
+</ul>
+<p>目标设计将其拆为：</p>
+<ol type="1">
+<li>caller-specific normalization：<code>IF-VAR-003</code>；</li>
+<li>纯领域共识：本文 <code>IF-VAR-004</code>；</li>
+<li>VCF renderer：输出 adapter。</li>
+</ol>
+<p>旧脚本使用 <code>walk_together</code> 同步位置，但没有在共识函数中显式校验 REF/ALT。重构必须用规范 allele identity 消除“同位置不同 ALT 被误认为支持”的风险，并通过 characterization test 记录行为差异。</p>
+<h2 id="5-输入模型">5. 输入模型</h2>
+<h3 id="51-python-类型草案">5.1 Python 类型草案</h3>
+<pre class="python"><code>from __future__ import annotations
+
+from typing import Annotated, Literal
+from pydantic import BaseModel, Field, model_validator
+
+ImplementationId = Annotated[str, Field(pattern=r&quot;^[a-z][a-z0-9_.-]*$&quot;)]
+CaseId = Annotated[str, Field(pattern=r&quot;^[A-Za-z0-9_.-]+$&quot;)]
+
+
+class Sha256Digest(BaseModel, frozen=True):
+    algorithm: Literal[&quot;sha256&quot;] = &quot;sha256&quot;
+    value: Annotated[str, Field(pattern=r&quot;^[a-f0-9]{64}$&quot;)]
+
+
+class ReferenceIdentity(BaseModel, frozen=True):
+    assembly: str
+    dictionary_digest: Sha256Digest
+
+
+class CanonicalCallsetRef(BaseModel, frozen=True):
+    artifact_id: str
+    uri: str
+    checksum: Sha256Digest
+    case_id: CaseId
+    caller: ImplementationId
+    implementation_version: str
+    state: Literal[&quot;MATERIALIZED&quot;, &quot;EMPTY&quot;]
+    reference: ReferenceIdentity
+    normalization_contract: Literal[&quot;IF-VAR-003@1&quot;]
+    sample_order: tuple[str, ...]
+    allele_count: int = Field(ge=0)
+
+
+class ConsensusPolicy(BaseModel, frozen=True):
+    strategy: Literal[&quot;primary_confirmed&quot;]
+    primary: ImplementationId
+    minimum_callers: int = Field(default=2, ge=2)
+    on_failed_confirming_caller: Literal[&quot;fail&quot;, &quot;continue_if_minimum_available&quot;] = &quot;fail&quot;
+    preserve_primary_representation: bool = True
+
+
+class BuildConsensusSomaticCallsetRequest(BaseModel, frozen=True):
+    contract_version: Literal[&quot;1.0.0&quot;] = &quot;1.0.0&quot;
+    run_id: str
+    case_id: CaseId
+    callsets: tuple[CanonicalCallsetRef, ...]
+    policy: ConsensusPolicy
+
+    @model_validator(mode=&quot;after&quot;)
+    def validate_callers(self) -&gt; &quot;BuildConsensusSomaticCallsetRequest&quot;:
+        callers = [item.caller for item in self.callsets]
+        if len(callers) != len(set(callers)):
+            raise ValueError(&quot;caller IDs must be unique&quot;)
+        if self.policy.primary not in callers:
+            raise ValueError(&quot;primary caller must be present&quot;)
+        if len(callers) &lt; self.policy.minimum_callers:
+            raise ValueError(&quot;not enough configured callers&quot;)
+        return self</code></pre>
+<h3 id="52-必需输入">5.2 必需输入</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>必需</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>run_id</code></td>
+<td>是</td>
+<td>当前运行身份。</td>
+</tr>
+<tr>
+<td><code>case_id</code></td>
+<td>是</td>
+<td>所有 callset 必须属于同一 case。</td>
+</tr>
+<tr>
+<td><code>callsets</code></td>
+<td>是</td>
+<td>至少两个由 <code>IF-VAR-003@1</code> 产生的 callset。</td>
+</tr>
+<tr>
+<td><code>policy.strategy</code></td>
+<td>是</td>
+<td>首版仅 <code>primary_confirmed</code>。</td>
+</tr>
+<tr>
+<td><code>policy.primary</code></td>
+<td>是</td>
+<td>必须出现在 <code>callsets[].caller</code>。</td>
+</tr>
+<tr>
+<td><code>policy.minimum_callers</code></td>
+<td>是</td>
+<td>包含 primary 在内，至少为 2。</td>
+</tr>
+<tr>
+<td><code>on_failed_confirming_caller</code></td>
+<td>是</td>
+<td>失败 caller 的处理策略。</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="53-可选输入">5.3 可选输入</h3>
+<p>首版没有隐式可选文件。未来增加 callable-region intersection 或 caller weight 时必须提升 contract minor/major，并明确科学语义，不能通过任意 <code>parameters: dict</code> 绕过类型。</p>
+<h2 id="6-输出模型">6. 输出模型</h2>
+<pre class="python"><code>class AlleleIdentity(BaseModel, frozen=True):
+    assembly: str
+    sequence_id: str
+    position: int = Field(ge=1)
+    reference_bases: str
+    alternate_bases: str
+    normalization: Literal[&quot;left_aligned_biallelic_v1&quot;]
+
+
+class CallerSupport(BaseModel, frozen=True):
+    caller: ImplementationId
+    implementation_version: str
+    callset_artifact_id: str
+    is_primary: bool
+
+
+class VariantSupportDecision(BaseModel, frozen=True):
+    allele: AlleleIdentity
+    accepted: bool
+    supports: tuple[CallerSupport, ...]
+    required_support_count: int
+    reason: Literal[&quot;CONFIRMED&quot;, &quot;PRIMARY_ONLY&quot;]
+
+
+class ConsensusSummary(BaseModel, frozen=True):
+    primary_caller: ImplementationId
+    available_callers: tuple[ImplementationId, ...]
+    failed_callers: tuple[ImplementationId, ...]
+    primary_allele_count: int = Field(ge=0)
+    confirmed_allele_count: int = Field(ge=0)
+    primary_only_allele_count: int = Field(ge=0)
+
+
+class BuildConsensusSomaticCallsetResult(BaseModel, frozen=True):
+    confirmed_callset: &quot;ArtifactRef&quot;
+    primary_only_callset: &quot;ArtifactRef&quot;
+    support_table: &quot;ArtifactRef&quot;
+    decisions: tuple[VariantSupportDecision, ...]
+    summary: ConsensusSummary</code></pre>
+<h3 id="61-输出工件">6.1 输出工件</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>工件</th>
+<th>Artifact kind</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>confirmed_callset</code></td>
+<td><code>CONSENSUS_SOMATIC_VCF</code></td>
+<td>被足够 caller 支持的 primary allele。即使为零也生成合法 empty VCF。</td>
+</tr>
+<tr>
+<td><code>primary_only_callset</code></td>
+<td><code>PRIMARY_ONLY_SOMATIC_VCF</code></td>
+<td>未达到最小支持数的 primary allele。</td>
+</tr>
+<tr>
+<td><code>support_table</code></td>
+<td><code>VARIANT_SUPPORT_TABLE</code></td>
+<td>每个 primary allele 的支持 caller、版本、accepted 和 reason。</td>
+</tr>
+<tr>
+<td><code>summary</code></td>
+<td>内联结构</td>
+<td>数量、可用/失败 caller 和 policy 摘要。</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="62-variantcalledby">6.2 <code>VariantCalledBy</code></h3>
+<p>为兼容旧结果，confirmed/primary-only VCF 可以渲染：</p>
+<pre class="text"><code>##INFO=&lt;ID=VariantCalledBy,Number=.,Type=String,Description=&quot;Implementations supporting this normalized allele&quot;&gt;</code></pre>
+<p>字段值按稳定 caller ID 排序，primary 始终排第一。权威 support 信息是 <code>support_table</code> 和 provenance，VCF INFO 是兼容投影。</p>
+<h2 id="7-前置条件">7. 前置条件</h2>
+<p>planning/调用前必须满足：</p>
+<ol type="1">
+<li>所有 callset 为 <code>MATERIALIZED</code> 或 <code>EMPTY</code>；<code>FAILED</code> 输入按 policy 在上游处理。</li>
+<li>所有 callset 具有相同 <code>case_id</code>。</li>
+<li>reference assembly 和 dictionary digest 完全一致。</li>
+<li>normalization contract 为接口支持版本。</li>
+<li>caller ID 唯一。</li>
+<li>primary 存在且成功完成。</li>
+<li>可用 caller 数不少于 <code>minimum_callers</code>。</li>
+<li>sample order/schema 可被 renderer 兼容；差异不能静默重排。</li>
+<li>每个 callset 已拆为单 ALT、left-aligned 规范记录。</li>
+</ol>
+<h2 id="8-数据不变量">8. 数据不变量</h2>
+<h3 id="81-allele-identity">8.1 Allele identity</h3>
+<p>两个记录仅在以下字段全部一致时表示同一 allele：</p>
+<pre class="text"><code>assembly
+sequence_id after approved alias normalization
+1-based normalized position
+normalized reference_bases
+normalized alternate_bases
+normalization algorithm/version</code></pre>
+<p>因此：</p>
+<pre class="text"><code>chr1:100 A&gt;C != chr1:100 A&gt;G
+chr1:100 AT&gt;A == left-normalized equivalent representation only after IF-VAR-003</code></pre>
+<h3 id="82-集合不变量">8.2 集合不变量</h3>
+<pre class="text"><code>confirmed ⊆ primary
+primary_only ⊆ primary
+confirmed ∩ primary_only = ∅
+confirmed ∪ primary_only = primary</code></pre>
+<p>每个 primary allele 恰好产生一条 decision。每条 accepted decision 的 support 数量大于等于 <code>minimum_callers</code>。</p>
+<h3 id="83-状态不变量">8.3 状态不变量</h3>
+<ul>
+<li>primary 为 <code>EMPTY</code>：confirmed 和 primary-only 均为空，接口返回 <code>EMPTY</code>。</li>
+<li>primary 非空但无 confirmed allele：接口返回 <code>EMPTY</code>，同时 primary-only 为非空 supplemental artifact。</li>
+<li>有 confirmed allele：接口返回 <code>MATERIALIZED</code>。</li>
+<li>任一不可忽略的 caller 失败：接口返回 <code>FAILED</code>，不能把它当作空 callset。</li>
+</ul>
+<h2 id="9-算法契约">9. 算法契约</h2>
+<h3 id="91-参考伪代码">9.1 参考伪代码</h3>
+<pre class="python"><code>def build_primary_confirmed_consensus(request):
+    validated = validate_request(request)
+    primary = validated.primary_callset
+    confirming = validated.confirming_callsets
+
+    indexes = {
+        callset.caller: stream_or_index_by_allele_identity(callset)
+        for callset in confirming
+    }
+
+    confirmed = []
+    primary_only = []
+    decisions = []
+
+    for primary_variant in stream_variants(primary):
+        allele = primary_variant.allele_identity
+        supports = [support_from_primary(primary, allele)]
+
+        for caller, index in indexes.items():
+            match = index.find_exact(allele)
+            if match is not None:
+                supports.append(support_from_match(caller, match))
+
+        accepted = len(supports) &gt;= request.policy.minimum_callers
+        if accepted:
+            confirmed.append(preserve_primary_record(primary_variant, supports))
+        else:
+            primary_only.append(preserve_primary_record(primary_variant, supports))
+
+        decisions.append(make_decision(allele, supports, accepted))
+
+    assert_partition_invariants(primary, confirmed, primary_only, decisions)
+    return commit_typed_outputs(confirmed, primary_only, decisions)</code></pre>
+<h3 id="92-确定性">9.2 确定性</h3>
+<p>输出不得依赖 callset 输入顺序、Python hash 随机化或文件系统 glob 顺序。support caller 顺序固定为 primary 第一，其余按 implementation ID 排序。VCF 记录按 reference dictionary/position/REF/ALT 排序。</p>
+<h3 id="93-内存策略">9.3 内存策略</h3>
+<p>实现必须支持流式处理或按 contig/shard 索引，不能默认将全基因组 VCF 全部载入内存。索引方式是实现细节，但不能改变集合语义。</p>
+<h2 id="10-capability-与实现">10. Capability 与实现</h2>
+<h3 id="101-capability-声明">10.1 Capability 声明</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>首版要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assay</td>
+<td><code>WES</code>、<code>WGS</code></td>
+</tr>
+<tr>
+<td>Variant kinds</td>
+<td><code>SNV</code>、<code>INDEL</code></td>
+</tr>
+<tr>
+<td>Input state</td>
+<td><code>MATERIALIZED</code>、<code>EMPTY</code></td>
+</tr>
+<tr>
+<td>Input schema</td>
+<td><code>CanonicalSomaticCallset@1</code></td>
+</tr>
+<tr>
+<td>Reference</td>
+<td>同 assembly + dictionary digest</td>
+</tr>
+<tr>
+<td>Scatter axis</td>
+<td><code>contig</code> 或 <code>none</code></td>
+</tr>
+<tr>
+<td>Partial gather</td>
+<td>不允许</td>
+</tr>
+<tr>
+<td>Empty input</td>
+<td>typed empty</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="102-实现列表">10.2 实现列表</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Implementation</th>
+<th>状态</th>
+<th>语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>primary_confirmed_v1</code></td>
+<td>首期必需</td>
+<td>本文定义的 primary+confirming 规则。</td>
+</tr>
+<tr>
+<td><code>majority_vote_v1</code></td>
+<td>未来候选</td>
+<td>对所有 caller 对称投票，不与当前策略科学等价。</td>
+</tr>
+<tr>
+<td><code>union_v1</code></td>
+<td>未来候选</td>
+<td>caller 并集，不与当前策略科学等价。</td>
+</tr>
+</tbody>
+</table></div>
+<p>后两种实现只能作为新 policy/recipe 明确选择，不能在 <code>primary_confirmed_v1</code> 不可用时自动降级。</p>
+<h2 id="11-配置规范">11. 配置规范</h2>
+<pre class="yaml"><code>methods:
+  somatic_callers:
+    - mutect2
+    - varscan2
+    - strelka2
+
+policies:
+  somatic_consensus:
+    implementation: primary_confirmed_v1
+    strategy: primary_confirmed
+    primary: mutect2
+    minimum_callers: 2
+    on_failed_confirming_caller: fail
+    preserve_primary_representation: true</code></pre>
+<h3 id="111-配置校验">11.1 配置校验</h3>
+<ul>
+<li><code>primary</code> 必须包含在 <code>methods.somatic_callers</code>。</li>
+<li><code>minimum_callers &lt;= len(somatic_callers)</code>。</li>
+<li><code>minimum_callers &gt;= 2</code>。</li>
+<li>选择的 consensus implementation 必须支持所有输入 variant kinds/reference。</li>
+<li>若 <code>on_failed_confirming_caller=continue_if_minimum_available</code>，失败后剩余可用 caller 数仍必须达到 <code>minimum_callers</code>。</li>
+</ul>
+<h2 id="12-错误模型">12. 错误模型</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Error code</th>
+<th>Category</th>
+<th style="text-align: right;">Retryable</th>
+<th>条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CONSENSUS_PRIMARY_MISSING</code></td>
+<td><code>CONFIGURATION</code></td>
+<td style="text-align: right;">否</td>
+<td>primary 未配置或无输入。</td>
+</tr>
+<tr>
+<td><code>CONSENSUS_INSUFFICIENT_CALLERS</code></td>
+<td><code>CAPABILITY</code></td>
+<td style="text-align: right;">否</td>
+<td>可用 caller 少于最小值。</td>
+</tr>
+<tr>
+<td><code>CONSENSUS_CALLER_FAILED</code></td>
+<td><code>TOOL</code></td>
+<td style="text-align: right;">取决于上游</td>
+<td>policy 不允许忽略失败 caller。</td>
+</tr>
+<tr>
+<td><code>CALLSET_CASE_MISMATCH</code></td>
+<td><code>INVALID_INPUT</code></td>
+<td style="text-align: right;">否</td>
+<td>callset 属不同 case。</td>
+</tr>
+<tr>
+<td><code>CALLSET_REFERENCE_MISMATCH</code></td>
+<td><code>INVALID_INPUT</code></td>
+<td style="text-align: right;">否</td>
+<td>assembly/dictionary 不同。</td>
+</tr>
+<tr>
+<td><code>CALLSET_SCHEMA_MISMATCH</code></td>
+<td><code>SCHEMA</code></td>
+<td style="text-align: right;">否</td>
+<td>normalization/sample schema 不兼容。</td>
+</tr>
+<tr>
+<td><code>ALLELE_IDENTITY_INVALID</code></td>
+<td><code>DATA_INTEGRITY</code></td>
+<td style="text-align: right;">否</td>
+<td>allele 未规范化或非法。</td>
+</tr>
+<tr>
+<td><code>CONSENSUS_INVARIANT_VIOLATION</code></td>
+<td><code>INTERNAL</code></td>
+<td style="text-align: right;">否</td>
+<td>confirmed/primary-only 分区不成立。</td>
+</tr>
+<tr>
+<td><code>ARTIFACT_COMMIT_FAILED</code></td>
+<td><code>TRANSIENT_INFRASTRUCTURE</code></td>
+<td style="text-align: right;">是</td>
+<td>staging 校验通过但原子提交失败。</td>
+</tr>
+</tbody>
+</table></div>
+<p>错误必须关联 <code>run_id</code>、<code>case_id</code>、task/attempt 和相关 artifact ID，不在日志输出完整 VCF 内容。</p>
+<h2 id="13-scattergather">13. Scatter/Gather</h2>
+<h3 id="131-scatter">13.1 Scatter</h3>
+<p>可按 reference dictionary 的 contig scatter。稳定 shard ID：</p>
+<pre class="text"><code>&lt;case_id&gt;.consensus.&lt;sequence_index&gt;.&lt;sequence_id&gt;</code></pre>
+<p>每个 shard 必须同时接收 primary 和所有 confirming callset 的对应 contig 分片。不能因某 caller 在该 contig 无记录而省略其 typed empty shard。</p>
+<h3 id="132-gather">13.2 Gather</h3>
+<ul>
+<li>必须等待全部预期 contig shard 成功或合法 <code>EMPTY</code>。</li>
+<li>不允许 partial gather。</li>
+<li>合并顺序遵循 reference dictionary。</li>
+<li>header、sample order、INFO/FORMAT schema 必须一致。</li>
+<li>gather 后重新验证集合不变量和总计数。</li>
+</ul>
+<h2 id="14-资源模型">14. 资源模型</h2>
+<p>这是纯 Python/htslib-backed transform，不需要第三方算法容器或许可证。</p>
+<p>建议默认资源：</p>
+<pre class="yaml"><code>resources:
+  cpus: 1
+  memory_mb: 2048
+  runtime_minutes: 60
+  scratch_mb: 4096
+  scaling_model: &quot;memory=max(2048, total_vcf_gib*512); scatter_by_contig_when_total_vcf_gib&gt;4&quot;</code></pre>
+<p>站点可覆盖 CPU/内存/时间，但不能改变 scientific policy。实现应优先流式读取；大 callset 自动使用 contig scatter，而不是无限增加内存。</p>
+<p>若纯 Python 任务也在 core OCI image 中执行，必须记录 core image digest；本接口不允许联网。</p>
+<h2 id="15-cache-key">15. Cache key</h2>
+<p>除通用字段外，必须包含：</p>
+<pre class="text"><code>IF-VAR-004 contract version
+consensus implementation/version
+primary caller ID
+minimum_callers
+failed-caller policy
+preserve-primary-representation flag
+ordered set of input caller IDs + implementation versions
+all input artifact checksums
+normalization contract/version
+reference assembly + dictionary digest
+renderer schema/version</code></pre>
+<p>输入 callset 列表顺序不应影响 key；应先按 caller ID 规范排序。CPU、partition、account 默认不进入 key。</p>
+<h2 id="16-provenance">16. Provenance</h2>
+<h3 id="161-task-级">16.1 Task 级</h3>
+<p>记录：</p>
+<ul>
+<li>resolved policy；</li>
+<li>primary/confirming caller IDs 和版本；</li>
+<li>输入 artifact IDs/checksums/states；</li>
+<li>reference/normalization identity；</li>
+<li>implementation/core image；</li>
+<li>cache hit/miss；</li>
+<li>task/attempt/resource；</li>
+<li>confirmed/primary-only 数量。</li>
+</ul>
+<h3 id="162-allele-级-support">16.2 Allele 级 support</h3>
+<p>示例：</p>
+<pre class="json"><code>{
+  &quot;allele&quot;: {
+    &quot;assembly&quot;: &quot;GRCh38&quot;,
+    &quot;sequence_id&quot;: &quot;chr7&quot;,
+    &quot;position&quot;: 140453136,
+    &quot;reference_bases&quot;: &quot;A&quot;,
+    &quot;alternate_bases&quot;: &quot;T&quot;,
+    &quot;normalization&quot;: &quot;left_aligned_biallelic_v1&quot;
+  },
+  &quot;accepted&quot;: true,
+  &quot;required_support_count&quot;: 2,
+  &quot;supports&quot;: [
+    {&quot;caller&quot;: &quot;mutect2&quot;, &quot;implementation_version&quot;: &quot;4.6.1.0&quot;, &quot;is_primary&quot;: true},
+    {&quot;caller&quot;: &quot;varscan2&quot;, &quot;implementation_version&quot;: &quot;2.4.3&quot;, &quot;is_primary&quot;: false}
+  ],
+  &quot;reason&quot;: &quot;CONFIRMED&quot;
+}</code></pre>
+<p>不得只记录逗号字符串而丢失 caller 版本和输入 artifact。</p>
+<h2 id="17-测试规范">17. 测试规范</h2>
+<h3 id="171-unit-tests">17.1 Unit tests</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Test ID</th>
+<th>Given</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TST-UNIT-VAR-004-001</code></td>
+<td>primary A&gt;C，confirming A&gt;C</td>
+<td>allele confirmed。</td>
+</tr>
+<tr>
+<td><code>TST-UNIT-VAR-004-002</code></td>
+<td>primary A&gt;C，confirming A&gt;G，同位置</td>
+<td>不确认；进入 primary-only。</td>
+</tr>
+<tr>
+<td><code>TST-UNIT-VAR-004-003</code></td>
+<td>primary-only allele</td>
+<td>confirmed empty，support 仅 primary。</td>
+</tr>
+<tr>
+<td><code>TST-UNIT-VAR-004-004</code></td>
+<td>confirming-only allele</td>
+<td>不出现在任一 primary 分区。</td>
+</tr>
+<tr>
+<td><code>TST-UNIT-VAR-004-005</code></td>
+<td>三 callers，最小支持 3</td>
+<td>只有三者均支持时确认。</td>
+</tr>
+<tr>
+<td><code>TST-UNIT-VAR-004-006</code></td>
+<td>confirming callset <code>EMPTY</code></td>
+<td>成功处理但不提供支持。</td>
+</tr>
+<tr>
+<td><code>TST-UNIT-VAR-004-007</code></td>
+<td>confirming <code>FAILED</code>，policy=fail</td>
+<td>接口失败。</td>
+</tr>
+<tr>
+<td><code>TST-UNIT-VAR-004-008</code></td>
+<td>confirming <code>FAILED</code>，剩余仍满足 minimum</td>
+<td>按 continue policy 完成并记录 failed caller。</td>
+</tr>
+<tr>
+<td><code>TST-UNIT-VAR-004-009</code></td>
+<td>primary <code>EMPTY</code></td>
+<td>typed empty outputs 和零计数。</td>
+</tr>
+<tr>
+<td><code>TST-UNIT-VAR-004-010</code></td>
+<td>caller 输入顺序随机</td>
+<td>输出与 cache key 不变。</td>
+</tr>
+<tr>
+<td><code>TST-UNIT-VAR-004-011</code></td>
+<td>reference dictionary 不同</td>
+<td>validation fail。</td>
+</tr>
+<tr>
+<td><code>TST-UNIT-VAR-004-012</code></td>
+<td>多等位未拆分</td>
+<td>schema/identity validation fail。</td>
+</tr>
+<tr>
+<td><code>TST-UNIT-VAR-004-013</code></td>
+<td>left-normalized 等价 indel</td>
+<td>在上游规范后精确匹配。</td>
+</tr>
+<tr>
+<td><code>TST-UNIT-VAR-004-014</code></td>
+<td>duplicate caller ID</td>
+<td>request validation fail。</td>
+</tr>
+<tr>
+<td><code>TST-UNIT-VAR-004-015</code></td>
+<td>accepted/primary-only 集合</td>
+<td>分区不变量成立。</td>
+</tr>
+</tbody>
+</table></div>
+<p>Property tests：</p>
+<ul>
+<li><code>confirmed</code> 永远是 primary 子集；</li>
+<li>caller 输入排列不改变结果；</li>
+<li>增加一个不支持任何 primary allele 的 caller，在 minimum 不变时不改变 confirmed；</li>
+<li>增加支持某 primary allele 的 caller不会使该 allele 从 accepted 变为 rejected；</li>
+<li>每个 primary allele 恰有一条 decision。</li>
+</ul>
+<h3 id="172-contract-tests">17.2 Contract tests</h3>
+<p><code>TST-CONTRACT-CONS-001</code> 必须验证：</p>
+<ul>
+<li>Request/Result Pydantic schema；</li>
+<li>deterministic plan/output ordering；</li>
+<li>typed empty；</li>
+<li>error mapping；</li>
+<li>cache key sensitivity/stability；</li>
+<li>artifact companion/index；</li>
+<li>provenance 完整；</li>
+<li>无网络、无 <code>shell=True</code>、不修改输入。</li>
+</ul>
+<h3 id="173-integration-tests">17.3 Integration tests</h3>
+<p><code>TST-INT-CONS-001</code> 使用 Mutect2、VarScan2、Strelka2 的保存 fixture：</p>
+<ol type="1">
+<li>经各自 <code>IF-VAR-003</code> normalizer；</li>
+<li>运行共识；</li>
+<li>解析输出 VCF/support table；</li>
+<li>验证 primary 表达、support 和 empty；</li>
+<li>重复运行验证 cache hit。</li>
+</ol>
+<h3 id="174-scientific-equivalence-tests">17.4 Scientific-equivalence tests</h3>
+<p><code>TST-SCI-VAR-001</code> 在相同输入、caller 版本和 reference 下比较旧/新结果：</p>
+<ul>
+<li>规范 allele 集合；</li>
+<li>primary-only 集合；</li>
+<li>caller support 集合；</li>
+<li>primary 记录的 FILTER/AD/DP/AF；</li>
+<li>same-position-different-ALT 差异单独列为 characterization。</li>
+</ul>
+<p>不比较 VCF 压缩字节、header 顺序或时间戳。若新实现修正旧 ALT 匹配问题，必须标记 <code>APPROVED_SCIENTIFIC_CHANGE</code>，不能简单放宽比较规则。</p>
+<h2 id="18-demo-场景">18. Demo 场景</h2>
+<p>输入：</p>
+<pre class="text"><code>Mutect2 primary:
+  chr1:100 A&gt;C
+  chr1:200 G&gt;T
+  chr1:300 AT&gt;A
+
+VarScan2 confirming:
+  chr1:100 A&gt;C
+  chr1:200 G&gt;A
+
+Strelka2 confirming:
+  chr1:300 AT&gt;A</code></pre>
+<p>配置 <code>minimum_callers=2</code> 后期望：</p>
+<pre class="text"><code>confirmed:
+  chr1:100 A&gt;C  [mutect2,varscan2]
+  chr1:300 AT&gt;A [mutect2,strelka2]
+
+primary_only:
+  chr1:200 G&gt;T  [mutect2]
+
+ignored confirming-only/same-position-different-ALT:
+  chr1:200 G&gt;A</code></pre>
+<p>运行接口的 SDK 形态：</p>
+<pre class="python"><code>result = client.capabilities.build_consensus_somatic_callset(request)
+
+assert result.status == ResultStatus.MATERIALIZED
+assert result.value.summary.confirmed_allele_count == 2
+assert result.value.summary.primary_only_allele_count == 1</code></pre>
+<h2 id="19-验收条件">19. 验收条件</h2>
+<ul>
+<li><code>ACC-IF-VAR-004-001</code>：所有输入/输出模型、状态和错误均实现并生成 Schema。</li>
+<li><code>ACC-IF-VAR-004-002</code>：全部 unit/property/contract tests 通过，领域分支覆盖率不低于 90%。</li>
+<li><code>ACC-IF-VAR-004-003</code>：same-position-different-ALT 不被确认。</li>
+<li><code>ACC-IF-VAR-004-004</code>：失败 caller 不被当作无变异成功结果。</li>
+<li><code>ACC-IF-VAR-004-005</code>：local/Slurm 和 scatter/non-scatter 产生相同规范结果。</li>
+<li><code>ACC-IF-VAR-004-006</code>：每个 allele 可追踪到 caller/version/input artifact。</li>
+<li><code>ACC-IF-VAR-004-007</code>：已接入 <code>wes_dna_canonical</code> recipe，并有可重复 Demo。</li>
+<li><code>ACC-IF-VAR-004-008</code>：旧/新科学等价报告无未解释差异。</li>
+</ul>
+<h2 id="20-已知风险与决策点">20. 已知风险与决策点</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>风险</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>旧 <code>walk_together</code> 可能只同步位置</td>
+<td>characterization；目标实现使用 exact normalized allele identity。</td>
+</tr>
+<tr>
+<td>primary 切换改变输出表达</td>
+<td>记录为 policy 变化，cache 和 provenance 必须变化。</td>
+</tr>
+<tr>
+<td>caller normalization 不完整</td>
+<td>在 IF-VAR-003 阻止进入本接口，不在共识阶段猜 FORMAT。</td>
+</tr>
+<tr>
+<td>大 WGS VCF 占用内存</td>
+<td>流式或按 contig scatter；禁止默认全量 dict。</td>
+</tr>
+<tr>
+<td>confirming caller 失败影响结果</td>
+<td>由显式 policy 决定，报告 failed callers。</td>
+</tr>
+<tr>
+<td>多 caller 结果使用不同 reference</td>
+<td>plan/validation fail，不自动 lift-over。</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="21-版本演进规则">21. 版本演进规则</h2>
+<p>以下变化必须提升 contract major：</p>
+<ul>
+<li>从 primary 子集改为 union/majority；</li>
+<li>改变 allele identity 定义；</li>
+<li>改变 <code>minimum_callers</code> 的计数是否包含 primary；</li>
+<li>允许 partial gather；</li>
+<li>将 caller 失败自动视为无支持。</li>
+</ul>
+<p>新增可选 summary 字段、额外兼容 renderer 可以提升 minor。文档和错误信息修订提升 patch。</p>
+<h2 id="22-实现完成检查清单">22. 实现完成检查清单</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" />Request/Result 与 JSON Schema 完成。</label></li>
+<li><label><input type="checkbox" />纯 Python domain implementation，无工具调用。</label></li>
+<li><label><input type="checkbox" />exact allele identity 与分区不变量完成。</label></li>
+<li><label><input type="checkbox" />streaming/contig scatter 完成。</label></li>
+<li><label><input type="checkbox" />confirmed、primary-only、support artifacts 原子提交。</label></li>
+<li><label><input type="checkbox" />五类状态和错误分类完成。</label></li>
+<li><label><input type="checkbox" />cache key 与 provenance 完成。</label></li>
+<li><label><input type="checkbox" />unit/property/contract/integration/scientific tests 完成。</label></li>
+<li><label><input type="checkbox" />YAML、SDK Demo 和 recipe wiring 完成。</label></li>
+<li><label><input type="checkbox" />生物信息学负责人批准语义。</label></li>
+<li><label><input type="checkbox" />需求—接口—测试—验收追踪更新。</label></li>
+</ul>
+</article>
+      <footer class="page-footer">nextNEOpi Software Plan · Design API，不表示实现已完成</footer>
+    </main>
+    <aside class="page-toc" aria-label="On this page"><h2>本页内容</h2><ol><li class="toc-level-2"><a href="#1-接口元数据">1. 接口元数据</a></li><li class="toc-level-2"><a href="#2-目的">2. 目的</a></li><li class="toc-level-2"><a href="#3-科学语义">3. 科学语义</a></li><li class="toc-level-3"><a href="#31-primary_confirmed-定义">3.1 primary_confirmed 定义</a></li><li class="toc-level-3"><a href="#32-必须保持的行为">3.2 必须保持的行为</a></li><li class="toc-level-3"><a href="#33-明确非职责">3.3 明确非职责</a></li><li class="toc-level-2"><a href="#4-当前代码映射">4. 当前代码映射</a></li><li class="toc-level-2"><a href="#5-输入模型">5. 输入模型</a></li><li class="toc-level-3"><a href="#51-python-类型草案">5.1 Python 类型草案</a></li><li class="toc-level-3"><a href="#52-必需输入">5.2 必需输入</a></li><li class="toc-level-3"><a href="#53-可选输入">5.3 可选输入</a></li><li class="toc-level-2"><a href="#6-输出模型">6. 输出模型</a></li><li class="toc-level-3"><a href="#61-输出工件">6.1 输出工件</a></li><li class="toc-level-3"><a href="#62-variantcalledby">6.2 VariantCalledBy</a></li><li class="toc-level-2"><a href="#7-前置条件">7. 前置条件</a></li><li class="toc-level-2"><a href="#8-数据不变量">8. 数据不变量</a></li><li class="toc-level-3"><a href="#81-allele-identity">8.1 Allele identity</a></li><li class="toc-level-3"><a href="#82-集合不变量">8.2 集合不变量</a></li><li class="toc-level-3"><a href="#83-状态不变量">8.3 状态不变量</a></li><li class="toc-level-2"><a href="#9-算法契约">9. 算法契约</a></li><li class="toc-level-3"><a href="#91-参考伪代码">9.1 参考伪代码</a></li><li class="toc-level-3"><a href="#92-确定性">9.2 确定性</a></li><li class="toc-level-3"><a href="#93-内存策略">9.3 内存策略</a></li><li class="toc-level-2"><a href="#10-capability-与实现">10. Capability 与实现</a></li><li class="toc-level-3"><a href="#101-capability-声明">10.1 Capability 声明</a></li><li class="toc-level-3"><a href="#102-实现列表">10.2 实现列表</a></li><li class="toc-level-2"><a href="#11-配置规范">11. 配置规范</a></li><li class="toc-level-3"><a href="#111-配置校验">11.1 配置校验</a></li><li class="toc-level-2"><a href="#12-错误模型">12. 错误模型</a></li><li class="toc-level-2"><a href="#13-scattergather">13. Scatter/Gather</a></li><li class="toc-level-3"><a href="#131-scatter">13.1 Scatter</a></li><li class="toc-level-3"><a href="#132-gather">13.2 Gather</a></li><li class="toc-level-2"><a href="#14-资源模型">14. 资源模型</a></li><li class="toc-level-2"><a href="#15-cache-key">15. Cache key</a></li><li class="toc-level-2"><a href="#16-provenance">16. Provenance</a></li><li class="toc-level-3"><a href="#161-task-级">16.1 Task 级</a></li><li class="toc-level-3"><a href="#162-allele-级-support">16.2 Allele 级 support</a></li><li class="toc-level-2"><a href="#17-测试规范">17. 测试规范</a></li><li class="toc-level-3"><a href="#171-unit-tests">17.1 Unit tests</a></li><li class="toc-level-3"><a href="#172-contract-tests">17.2 Contract tests</a></li><li class="toc-level-3"><a href="#173-integration-tests">17.3 Integration tests</a></li><li class="toc-level-3"><a href="#174-scientific-equivalence-tests">17.4 Scientific-equivalence tests</a></li><li class="toc-level-2"><a href="#18-demo-场景">18. Demo 场景</a></li><li class="toc-level-2"><a href="#19-验收条件">19. 验收条件</a></li><li class="toc-level-2"><a href="#20-已知风险与决策点">20. 已知风险与决策点</a></li><li class="toc-level-2"><a href="#21-版本演进规则">21. 版本演进规则</a></li><li class="toc-level-2"><a href="#22-实现完成检查清单">22. 实现完成检查清单</a></li></ol></aside>
+  </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "capability_id": "IF-READ-002",
+  "implementation_id": "fastp",
+  "contract_version": "1.0.0",
+  "implementation_version": "0.24.0+adapter.1",
+  "core_compatibility": ">=0.1,<1.0",
+  "supports": {
+    "assays": ["WES", "WGS"],
+    "molecules": ["DNA", "RNA"],
+    "layouts": ["SINGLE_END", "PAIRED_END"],
+    "mhc_classes": [],
+    "variant_kinds": [],
+    "features": ["TRIM_READS", "TRIM_METRICS"],
+    "protocols": ["FULL_LENGTH", "THREE_PRIME_TAG"]
+  },
+  "inputs": [
+    {"name": "reads", "artifact_kind": "CANONICAL_READ_SET", "schema_version": "1.0.0", "required": true}
+  ],
+  "outputs": [
+    {"name": "reads", "artifact_kind": "TRIMMED_READ_SET", "schema_version": "1.0.0", "required": true},
+    {"name": "metrics", "artifact_kind": "TRIM_METRICS", "schema_version": "1.0.0", "required": true}
+  ],
+  "reference_requirements": [],
+  "container": {
+    "oci": "quay.io/biocontainers/fastp",
+    "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "runtime": "apptainer",
+    "entrypoint": ["fastp"],
+    "environment_allowlist": ["OMP_NUM_THREADS"]
+  },
+  "resources": {
+    "cpus": 8,
+    "memory_mb": 4096,
+    "runtime_minutes": 120,
+    "scratch_mb": 16384,
+    "gpus": 0,
+    "nodes": 1,
+    "tasks": 1,
+    "scaling_model": "scratch=max(16384,input_bytes*2)",
+    "scientific_resource_fields": []
+  },
+  "license": {
+    "id": "MIT",
+    "redistributable": true,
+    "acceptance_required": false,
+    "mount_required": false
+  },
+  "scatter": {
+    "supported": true,
+    "axes": ["sample"],
+    "partial_gather": false
+  },
+  "empty_input": "reject",
+  "degradation": [],
+  "implementation_config_schema": "pkg://nextneopi_fastp/fastp-config-v1.json"
+}

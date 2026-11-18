@@ -1,0 +1,79 @@
+schema_version: 1
+
+workflow:
+  recipe: wes_dna_canonical
+  assay: WES
+  optional_sections: []
+
+input:
+  manifest: samples.csv
+  manifest_format: legacy_csv_v1
+
+reference:
+  bundle: grch38-nextneopi-v1
+  capture_kit: agilent_v7
+
+methods:
+  read_materializer: fastq_passthrough
+  read_trimmer: fastp
+  read_qc: fastqc
+  dna_aligner: bwa_mem
+  alignment_postprocessor: gatk_picard_sambamba
+  base_recalibrator: gatk4
+  alignment_qc: gatk_mosdepth
+  somatic_callers: [mutect2, varscan2]
+  somatic_sv_caller: null
+  normal_germline_context: gatk_nvscore
+  consequence_annotator: vep
+  phase_context: read_backed
+  hla_evidence_extractor: samtools_mhc_unmapped
+  hla_typers: [optitype, hlahd]
+  canonical_neoantigen: pvacseq
+
+policies:
+  variant_normalization:
+    left_align: true
+    decompose_multiallelic: true
+    normalization_version: left_aligned_biallelic_v1
+  somatic_consensus:
+    implementation: primary_confirmed_v1
+    strategy: primary_confirmed
+    primary: mutect2
+    minimum_callers: 2
+    on_failed_confirming_caller: fail
+    preserve_primary_representation: true
+  phase_fallback: annotation_only
+  hla_resolution:
+    strategy: legacy_compatible_v1
+    required_mhc_classes: [I, II]
+    allow_rna_completion: false
+  purity:
+    providers: [configured]
+    configured_value: 0.95
+    on_failure: fail
+  report:
+    optional_failure: record
+    include_native_outputs: false
+
+implementation_configs:
+  fastp:
+    qualified_quality_phred: 20
+    minimum_length: 30
+    detect_adapter_for_pe: true
+  mutect2:
+    minimum_allele_depth: 5
+
+execution:
+  backend: local
+  profile: local-default
+  container_runtime: apptainer
+  scatter_count: 40
+  retry:
+    max_attempts: 2
+    resource_multiplier: 1.5
+
+output:
+  uri: results
+  qc_report_formats: [json, html]
+  scientific_report_formats: [json, tsv, html]
+  include_provenance: true

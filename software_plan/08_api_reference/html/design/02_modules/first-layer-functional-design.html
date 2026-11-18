@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="nextNEOpi Reference API: nextNEOpi 第一层功能拆分与验证方案">
+  <title>nextNEOpi 第一层功能拆分与验证方案 — nextNEOpi Reference API</title>
+  <link rel="stylesheet" href="../../_static/api.css">
+  <script defer src="../../_static/api.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到正文</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html"><span class="brand-mark">nN</span><span><strong>nextNEOpi</strong><small>Reference API</small></span></a>
+    <div class="header-meta"><span class="version-badge">Design v0.2</span><a href="../../_sources/02_modules/first-layer-functional-design.md">查看源文档</a></div>
+  </header>
+  <div class="site-grid">
+    <aside class="sidebar" aria-label="API navigation">
+      <label class="search-label" for="api-search">搜索</label>
+      <input id="api-search" type="search" placeholder="Filter pages…" autocomplete="off">
+      <nav><section class="nav-group"><h2>Reference</h2><ul><li data-nav-item data-search="reference api 08_api_reference/readme.md"><a class="nav-link" href="../../index.html">Reference API</a></li><li data-nav-item data-search="api overview 08_api_reference/api-overview.md"><a class="nav-link" href="../../api-overview.html">API overview</a></li><li data-nav-item data-search="api conventions 08_api_reference/api-conventions.md"><a class="nav-link" href="../../api-conventions.html">API conventions</a></li><li data-nav-item data-search="api stability 08_api_reference/stability.md"><a class="nav-link" href="../../stability.html">API stability</a></li><li data-nav-item data-search="package layout 08_api_reference/package-layout.md"><a class="nav-link" href="../../package-layout.html">Package layout</a></li><li data-nav-item data-search="typed edge matrix 08_api_reference/typed-edge-matrix.md"><a class="nav-link" href="../../typed-edge-matrix.html">Typed edge matrix</a></li><li data-nav-item data-search="implementation matrix 08_api_reference/implementation-matrix.md"><a class="nav-link" href="../../implementation-matrix.html">Implementation matrix</a></li></ul></section><section class="nav-group"><h2>Python API</h2><ul><li data-nav-item data-search="nextneopi 08_api_reference/nextneopi.md"><a class="nav-link" href="../../nextneopi.html">nextneopi</a></li><li data-nav-item data-search="nextneopi.config 08_api_reference/nextneopi.config.md"><a class="nav-link" href="../../nextneopi.config.html">nextneopi.config</a></li><li data-nav-item data-search="nextneopi.models 08_api_reference/nextneopi.models.md"><a class="nav-link" href="../../nextneopi.models.html">nextneopi.models</a></li><li data-nav-item data-search="nextneopi.application 08_api_reference/nextneopi.application.md"><a class="nav-link" href="../../nextneopi.application.html">nextneopi.application</a></li><li data-nav-item data-search="nextneopi.ports 08_api_reference/nextneopi.ports.md"><a class="nav-link" href="../../nextneopi.ports.html">nextneopi.ports</a></li><li data-nav-item data-search="nextneopi.plugins 08_api_reference/nextneopi.plugins.md"><a class="nav-link" href="../../nextneopi.plugins.html">nextneopi.plugins</a></li><li data-nav-item data-search="nextneopi.workflows 08_api_reference/nextneopi.workflows.md"><a class="nav-link" href="../../nextneopi.workflows.html">nextneopi.workflows</a></li><li data-nav-item data-search="nextneopi.errors 08_api_reference/errors.md"><a class="nav-link" href="../../errors.html">nextneopi.errors</a></li><li data-nav-item data-search="type index 08_api_reference/type-index.md"><a class="nav-link" href="../../type-index.html">Type index</a></li></ul></section><section class="nav-group"><h2>Scientific capabilities</h2><ul><li data-nav-item data-search="input_reference 08_api_reference/capabilities/input_reference.md"><a class="nav-link" href="../../capabilities/input_reference.html">input_reference</a></li><li data-nav-item data-search="reads_qc 08_api_reference/capabilities/reads_qc.md"><a class="nav-link" href="../../capabilities/reads_qc.html">reads_qc</a></li><li data-nav-item data-search="alignment 08_api_reference/capabilities/alignment.md"><a class="nav-link" href="../../capabilities/alignment.html">alignment</a></li><li data-nav-item data-search="variants 08_api_reference/capabilities/variants.md"><a class="nav-link" href="../../capabilities/variants.html">variants</a></li><li data-nav-item data-search="annotation 08_api_reference/capabilities/annotation_phasing.md"><a class="nav-link" href="../../capabilities/annotation_phasing.html">annotation</a></li><li data-nav-item data-search="hla 08_api_reference/capabilities/hla.md"><a class="nav-link" href="../../capabilities/hla.html">hla</a></li><li data-nav-item data-search="copy_number 08_api_reference/capabilities/copy_number.md"><a class="nav-link" href="../../capabilities/copy_number.html">copy_number</a></li><li data-nav-item data-search="ccf_tmb 08_api_reference/capabilities/ccf_tmb.md"><a class="nav-link" href="../../capabilities/ccf_tmb.html">ccf_tmb</a></li><li data-nav-item data-search="rna 08_api_reference/capabilities/rna.md"><a class="nav-link" href="../../capabilities/rna.html">rna</a></li><li data-nav-item data-search="events 08_api_reference/capabilities/fusion_splicing.md"><a class="nav-link" href="../../capabilities/fusion_splicing.html">events</a></li><li data-nav-item data-search="neoantigens 08_api_reference/capabilities/neoantigens.md"><a class="nav-link" href="../../capabilities/neoantigens.html">neoantigens</a></li><li data-nav-item data-search="immunity 08_api_reference/capabilities/immunogenicity_repertoire.md"><a class="nav-link" href="../../capabilities/immunogenicity_repertoire.html">immunity</a></li><li data-nav-item data-search="reporting 08_api_reference/capabilities/reporting.md"><a class="nav-link" href="../../capabilities/reporting.html">reporting</a></li></ul></section><section class="nav-group"><h2>Guides</h2><ul><li data-nav-item data-search="quickstart 08_api_reference/examples/quickstart.md"><a class="nav-link" href="../../examples/quickstart.html">Quickstart</a></li><li data-nav-item data-search="implement a plugin 08_api_reference/examples/implement-plugin.md"><a class="nav-link" href="../../examples/implement-plugin.html">Implement a plugin</a></li></ul></section><section class="nav-group"><h2>Overview</h2><ul><li data-nav-item data-search="nextneopi python 重构设计文档 readme.md"><a class="nav-link" href="../README.html">nextNEOpi Python 重构设计文档</a></li></ul></section><section class="nav-group"><h2>Requirements</h2><ul><li data-nav-item data-search="功能需求 00_requirements/functional-requirements.md"><a class="nav-link" href="../00_requirements/functional-requirements.html">功能需求</a></li><li data-nav-item data-search="术语表 00_requirements/glossary.md"><a class="nav-link" href="../00_requirements/glossary.html">术语表</a></li><li data-nav-item data-search="非功能需求 00_requirements/non-functional-requirements.md"><a class="nav-link" href="../00_requirements/non-functional-requirements.html">非功能需求</a></li><li data-nav-item data-search="范围与目标 00_requirements/scope-and-goals.md"><a class="nav-link" href="../00_requirements/scope-and-goals.html">范围与目标</a></li><li data-nav-item data-search="需求追踪矩阵 00_requirements/traceability-matrix.md"><a class="nav-link" href="../00_requirements/traceability-matrix.html">需求追踪矩阵</a></li></ul></section><section class="nav-group"><h2>Architecture &amp; ADRs</h2><ul><li data-nav-item data-search="总体架构 01_architecture/architecture-overview.md"><a class="nav-link" href="../01_architecture/architecture-overview.html">总体架构</a></li><li data-nav-item data-search="工件与数据模型 01_architecture/artifact-and-data-model.md"><a class="nav-link" href="../01_architecture/artifact-and-data-model.html">工件与数据模型</a></li><li data-nav-item data-search="配置架构 01_architecture/configuration-architecture.md"><a class="nav-link" href="../01_architecture/configuration-architecture.html">配置架构</a></li><li data-nav-item data-search="adr-001：自研系统采用 python 端口/适配器架构 01_architecture/decisions/adr-001-python-architecture.md"><a class="nav-link" href="../01_architecture/decisions/ADR-001-python-architecture.html">ADR-001：自研系统采用 Python 端口/适配器架构</a></li><li data-nav-item data-search="adr-002：执行引擎由 executionbackend 隔离 01_architecture/decisions/adr-002-execution-backend.md"><a class="nav-link" href="../01_architecture/decisions/ADR-002-execution-backend.html">ADR-002：执行引擎由 ExecutionBackend 隔离</a></li><li data-nav-item data-search="adr-003：使用 pypa entry points 发现插件 01_architecture/decisions/adr-003-plugin-discovery.md"><a class="nav-link" href="../01_architecture/decisions/ADR-003-plugin-discovery.html">ADR-003：使用 PyPA entry points 发现插件</a></li><li data-nav-item data-search="adr-004：项目自有 typed artifact 与内容寻址缓存 01_architecture/decisions/adr-004-artifact-and-cache.md"><a class="nav-link" href="../01_architecture/decisions/ADR-004-artifact-and-cache.html">ADR-004：项目自有 typed artifact 与内容寻址缓存</a></li><li data-nav-item data-search="adr-005：第三方工具采用 digest 固定的离线容器 01_architecture/decisions/adr-005-container-strategy.md"><a class="nav-link" href="../01_architecture/decisions/ADR-005-container-strategy.html">ADR-005：第三方工具采用 digest 固定的离线容器</a></li><li data-nav-item data-search="部署与容器 01_architecture/deployment-and-containers.md"><a class="nav-link" href="../01_architecture/deployment-and-containers.html">部署与容器</a></li><li data-nav-item data-search="领域模型 01_architecture/domain-model.md"><a class="nav-link" href="../01_architecture/domain-model.html">领域模型</a></li><li data-nav-item data-search="provenance 与可观察性 01_architecture/provenance-and-observability.md"><a class="nav-link" href="../01_architecture/provenance-and-observability.html">Provenance 与可观察性</a></li><li data-nav-item data-search="安全与许可证 01_architecture/security-and-licenses.md"><a class="nav-link" href="../01_architecture/security-and-licenses.html">安全与许可证</a></li><li data-nav-item data-search="工作流运行时 01_architecture/workflow-runtime.md"><a class="nav-link" href="../01_architecture/workflow-runtime.html">工作流运行时</a></li></ul></section><section class="nav-group"><h2>Module map</h2><ul><li data-nav-item data-search="mod-01 输入与 manifest 02_modules/mod-01-input-and-manifest.md"><a class="nav-link" href="MOD-01-input-and-manifest.html">MOD-01 输入与 Manifest</a></li><li data-nav-item data-search="mod-02 参考资源与区间 02_modules/mod-02-reference-and-intervals.md"><a class="nav-link" href="MOD-02-reference-and-intervals.html">MOD-02 参考资源与区间</a></li><li data-nav-item data-search="mod-03 reads 预处理与 qc 02_modules/mod-03-read-preprocessing-and-qc.md"><a class="nav-link" href="MOD-03-read-preprocessing-and-qc.html">MOD-03 Reads 预处理与 QC</a></li><li data-nav-item data-search="mod-04 dna 比对 02_modules/mod-04-dna-alignment.md"><a class="nav-link" href="MOD-04-dna-alignment.html">MOD-04 DNA 比对</a></li><li data-nav-item data-search="mod-05 体细胞变异 02_modules/mod-05-somatic-variants.md"><a class="nav-link" href="MOD-05-somatic-variants.html">MOD-05 体细胞变异</a></li><li data-nav-item data-search="mod-06 注释与相位 02_modules/mod-06-annotation-and-phasing.md"><a class="nav-link" href="MOD-06-annotation-and-phasing.html">MOD-06 注释与相位</a></li><li data-nav-item data-search="mod-07 hla 分型 02_modules/mod-07-hla-typing.md"><a class="nav-link" href="MOD-07-hla-typing.html">MOD-07 HLA 分型</a></li><li data-nav-item data-search="mod-08 拷贝数、纯度与倍性 02_modules/mod-08-copy-number-and-purity.md"><a class="nav-link" href="MOD-08-copy-number-and-purity.html">MOD-08 拷贝数、纯度与倍性</a></li><li data-nav-item data-search="mod-09 ccf 与 tmb 02_modules/mod-09-ccf-and-tmb.md"><a class="nav-link" href="MOD-09-ccf-and-tmb.html">MOD-09 CCF 与 TMB</a></li><li data-nav-item data-search="mod-10 rna 比对与表达 02_modules/mod-10-rna-expression.md"><a class="nav-link" href="MOD-10-rna-expression.html">MOD-10 RNA 比对与表达</a></li><li data-nav-item data-search="mod-11 融合与异常剪接 02_modules/mod-11-fusion-and-splicing.md"><a class="nav-link" href="MOD-11-fusion-and-splicing.html">MOD-11 融合与异常剪接</a></li><li data-nav-item data-search="mod-12 新抗原预测 02_modules/mod-12-neoantigen-prediction.md"><a class="nav-link" href="MOD-12-neoantigen-prediction.html">MOD-12 新抗原预测</a></li><li data-nav-item data-search="mod-13 免疫原性与免疫组库 02_modules/mod-13-immunogenicity-and-repertoire.md"><a class="nav-link" href="MOD-13-immunogenicity-and-repertoire.html">MOD-13 免疫原性与免疫组库</a></li><li data-nav-item data-search="mod-14 报告 02_modules/mod-14-reporting.md"><a class="nav-link" href="MOD-14-reporting.html">MOD-14 报告</a></li><li data-nav-item data-search="nextneopi 第一层功能拆分与验证方案 02_modules/first-layer-functional-design.md"><a class="nav-link active" href="first-layer-functional-design.html" aria-current="page">nextNEOpi 第一层功能拆分与验证方案</a></li><li data-nav-item data-search="模块地图 02_modules/module-map.md"><a class="nav-link" href="module-map.html">模块地图</a></li><li data-nav-item data-search="nextneopi 第二层算法清单与替换评估 02_modules/second-layer-algorithm-inventory.md"><a class="nav-link" href="second-layer-algorithm-inventory.html">nextNEOpi 第二层算法清单与替换评估</a></li></ul></section><section class="nav-group"><h2>Interface contracts</h2><ul><li data-nav-item data-search="artifactstore 契约 03_interfaces/artifact-store-contract.md"><a class="nav-link" href="../03_interfaces/artifact-store-contract.html">ArtifactStore 契约</a></li><li data-nav-item data-search="capability 模型 03_interfaces/capability-model.md"><a class="nav-link" href="../03_interfaces/capability-model.html">Capability 模型</a></li><li data-nav-item data-search="cnv、纯度、ccf 与 tmb 接口 03_interfaces/cnv-ccf-tmb-interfaces.md"><a class="nav-link" href="../03_interfaces/cnv-ccf-tmb-interfaces.html">CNV、纯度、CCF 与 TMB 接口</a></li><li data-nav-item data-search="if-var-004 buildconsensussomaticcallset 接口文档样例 03_interfaces/examples/if-var-004-build-consensus-somatic-callset.md"><a class="nav-link" href="../03_interfaces/examples/IF-VAR-004-build-consensus-somatic-callset.html">IF-VAR-004 BuildConsensusSomaticCallset 接口文档样例</a></li><li data-nav-item data-search="executionbackend 契约 03_interfaces/execution-backend-contract.md"><a class="nav-link" href="../03_interfaces/execution-backend-contract.html">ExecutionBackend 契约</a></li><li data-nav-item data-search="hla 接口 03_interfaces/hla-interfaces.md"><a class="nav-link" href="../03_interfaces/hla-interfaces.html">HLA 接口</a></li><li data-nav-item data-search="输入与参考接口 03_interfaces/input-reference-interfaces.md"><a class="nav-link" href="../03_interfaces/input-reference-interfaces.html">输入与参考接口</a></li><li data-nav-item data-search="接口约定 03_interfaces/interface-conventions.md"><a class="nav-link" href="../03_interfaces/interface-conventions.html">接口约定</a></li><li data-nav-item data-search="新抗原、免疫原性与免疫组库接口 03_interfaces/neoantigen-interfaces.md"><a class="nav-link" href="../03_interfaces/neoantigen-interfaces.html">新抗原、免疫原性与免疫组库接口</a></li><li data-nav-item data-search="插件契约 03_interfaces/plugin-contract.md"><a class="nav-link" href="../03_interfaces/plugin-contract.html">插件契约</a></li><li data-nav-item data-search="reads、qc 与 dna 比对接口 03_interfaces/qc-alignment-interfaces.md"><a class="nav-link" href="../03_interfaces/qc-alignment-interfaces.html">Reads、QC 与 DNA 比对接口</a></li><li data-nav-item data-search="报告接口 03_interfaces/reporting-interfaces.md"><a class="nav-link" href="../03_interfaces/reporting-interfaces.html">报告接口</a></li><li data-nav-item data-search="rna、融合与剪接接口 03_interfaces/rna-fusion-splicing-interfaces.md"><a class="nav-link" href="../03_interfaces/rna-fusion-splicing-interfaces.html">RNA、融合与剪接接口</a></li><li data-nav-item data-search="变异、注释与相位接口 03_interfaces/variant-interfaces.md"><a class="nav-link" href="../03_interfaces/variant-interfaces.html">变异、注释与相位接口</a></li></ul></section><section class="nav-group"><h2>Specifications &amp; schemas</h2><ul><li data-nav-item data-search="cli 与 python sdk 规范 04_specifications/cli-and-sdk-specification.md"><a class="nav-link" href="../04_specifications/cli-and-sdk-specification.html">CLI 与 Python SDK 规范</a></li><li data-nav-item data-search="配置规范 04_specifications/configuration-specification.md"><a class="nav-link" href="../04_specifications/configuration-specification.html">配置规范</a></li><li data-nav-item data-search="错误与状态模型 04_specifications/error-and-status-model.md"><a class="nav-link" href="../04_specifications/error-and-status-model.html">错误与状态模型</a></li><li data-nav-item data-search="输出布局 04_specifications/output-layout.md"><a class="nav-link" href="../04_specifications/output-layout.html">输出布局</a></li><li data-nav-item data-search="provenance 规范 04_specifications/provenance-specification.md"><a class="nav-link" href="../04_specifications/provenance-specification.html">Provenance 规范</a></li><li data-nav-item data-search="资源与容器模型 04_specifications/resource-model.md"><a class="nav-link" href="../04_specifications/resource-model.html">资源与容器模型</a></li></ul></section><section class="nav-group"><h2>Testing &amp; equivalence</h2><ul><li data-nav-item data-search="验收测试矩阵 05_testing/acceptance-test-matrix.md"><a class="nav-link" href="../05_testing/acceptance-test-matrix.html">验收测试矩阵</a></li><li data-nav-item data-search="契约测试计划 05_testing/contract-test-plan.md"><a class="nav-link" href="../05_testing/contract-test-plan.html">契约测试计划</a></li><li data-nav-item data-search="集成测试计划 05_testing/integration-test-plan.md"><a class="nav-link" href="../05_testing/integration-test-plan.html">集成测试计划</a></li><li data-nav-item data-search="性能与可靠性测试计划 05_testing/performance-test-plan.md"><a class="nav-link" href="../05_testing/performance-test-plan.html">性能与可靠性测试计划</a></li><li data-nav-item data-search="科学等价测试计划 05_testing/scientific-equivalence-plan.md"><a class="nav-link" href="../05_testing/scientific-equivalence-plan.html">科学等价测试计划</a></li><li data-nav-item data-search="slurm 与容器测试计划 05_testing/slurm-and-container-test-plan.md"><a class="nav-link" href="../05_testing/slurm-and-container-test-plan.html">Slurm 与容器测试计划</a></li><li data-nav-item data-search="系统测试计划 05_testing/system-test-plan.md"><a class="nav-link" href="../05_testing/system-test-plan.html">系统测试计划</a></li><li data-nav-item data-search="测试数据策略 05_testing/test-data-strategy.md"><a class="nav-link" href="../05_testing/test-data-strategy.html">测试数据策略</a></li><li data-nav-item data-search="测试策略 05_testing/test-strategy.md"><a class="nav-link" href="../05_testing/test-strategy.html">测试策略</a></li><li data-nav-item data-search="单元测试计划 05_testing/unit-test-plan.md"><a class="nav-link" href="../05_testing/unit-test-plan.html">单元测试计划</a></li></ul></section><section class="nav-group"><h2>Quality gates</h2><ul><li data-nav-item data-search="python 编码规范 06_quality/coding-standards.md"><a class="nav-link" href="../06_quality/coding-standards.html">Python 编码规范</a></li><li data-nav-item data-search="definition of done 06_quality/definition-of-done.md"><a class="nav-link" href="../06_quality/definition-of-done.html">Definition of Done</a></li><li data-nav-item data-search="插件评审清单 06_quality/plugin-review-checklist.md"><a class="nav-link" href="../06_quality/plugin-review-checklist.html">插件评审清单</a></li><li data-nav-item data-search="质量门禁 06_quality/quality-gates.md"><a class="nav-link" href="../06_quality/quality-gates.html">质量门禁</a></li><li data-nav-item data-search="发布就绪清单 06_quality/release-readiness-checklist.md"><a class="nav-link" href="../06_quality/release-readiness-checklist.html">发布就绪清单</a></li></ul></section><section class="nav-group"><h2>Migration</h2><ul><li data-nav-item data-search="兼容与科学连续性策略 07_migration/compatibility-strategy.md"><a class="nav-link" href="../07_migration/compatibility-strategy.html">兼容与科学连续性策略</a></li><li data-nav-item data-search="当前代码到目标架构映射 07_migration/current-to-target-mapping.md"><a class="nav-link" href="../07_migration/current-to-target-mapping.html">当前代码到目标架构映射</a></li><li data-nav-item data-search="增量迁移路线 07_migration/incremental-roadmap.md"><a class="nav-link" href="../07_migration/incremental-roadmap.html">增量迁移路线</a></li><li data-nav-item data-search="nextflow 退役条件 07_migration/nextflow-retirement-criteria.md"><a class="nav-link" href="../07_migration/nextflow-retirement-criteria.html">Nextflow 退役条件</a></li><li data-nav-item data-search="风险登记 07_migration/risk-register.md"><a class="nav-link" href="../07_migration/risk-register.html">风险登记</a></li></ul></section></nav>
+    </aside>
+    <main id="main-content" class="main-content">
+      <div class="breadcrumbs"><a href="../../index.html">Reference API</a><span class="crumb-separator">/</span>02_modules/first-layer-functional-design.md</div>
+      <span class="context-badge">Design context</span>
+      <article class="api-content"><h1 id="nextneopi-第一层功能拆分与验证方案">nextNEOpi 第一层功能拆分与验证方案</h1>
+<p>第一层建议划分为 <strong>7 个计算能力</strong>，由输入与运行管理负责调度，由报告与发布负责汇总。每个计算能力都有明确的输入和可保存的输出，能够从保存的中间产物独立验证。现有 14 个 <code>MOD-*</code> 模块用于下一层细化。本方案基于对旧流程提交 <code>9f34698</code> 的静态检查，等价性仍需用实际运行结果验证。<a href="../README.html#已确认的设计基线">设计基线</a> · <a href="module-map.html#模块一览">现有模块地图</a></p>
+<h2 id="第一层功能划分">第一层功能划分</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>第一层计算能力</th>
+<th>职责</th>
+<th>对外交付的产物</th>
+<th>对应细模块</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A. 测序数据准备与 DNA 比对</td>
+<td>接入 FASTQ/BAM，进行 reads 质控、DNA 比对、重复标记和重校准</td>
+<td>规范化 DNA/RNA reads、各阶段 BAM/BAI、覆盖度和质控指标</td>
+<td>MOD-03～04</td>
+</tr>
+<tr>
+<td>B. DNA 变异与注释</td>
+<td>检测体细胞和胚系变异，建立高置信共识，进行 VEP 注释与定相</td>
+<td>各调用器 VCF、高置信 VCF、Manta 结构变异、注释 VCF、定相证据及状态</td>
+<td>MOD-05～06</td>
+</tr>
+<tr>
+<td>C. HLA 分型</td>
+<td>汇总 DNA、RNA 和用户提供的分型证据，确定用于呈递预测的 HLA</td>
+<td>Class I/II 分型、等位基因及配对、来源，以及补充预测所需的 HLA-HD 证据</td>
+<td>MOD-07</td>
+</tr>
+<tr>
+<td>D. 肿瘤特征</td>
+<td>估计拷贝数、纯度和克隆性，计算突变负荷</td>
+<td>CNV 区段、纯度及来源、携带变异的癌细胞比例（CCF）、TMB 的突变数和可评估区域大小</td>
+<td>MOD-08～09</td>
+</tr>
+<tr>
+<td>E. RNA 表达与事件</td>
+<td>进行 RNA 比对和表达定量，提取变异的 RNA 支持、融合与异常剪接证据</td>
+<td>RNA BAM/BAI、TPM、RNA 等位基因计数、融合和剪接事件</td>
+<td>MOD-10～11</td>
+</tr>
+<tr>
+<td>F. 新抗原候选与呈递预测</td>
+<td>生成常规变异、融合和剪接候选，按 HLA 预测和过滤</td>
+<td>按事件来源和 MHC 类别区分的全量表、过滤表和分数，以及 MixMHC2pred 补充预测结果</td>
+<td>MOD-12、MOD-13 的部分能力</td>
+</tr>
+<tr>
+<td>G. 免疫证据分析</td>
+<td>为候选补充 CCF、参考蛋白匹配和免疫原性分数，并从 reads 独立分析受体库</td>
+<td>候选证据表、CSiN/GBM 分数、MiXCR BCR/TCR 受体库</td>
+<td>MOD-13 的其余能力</td>
+</tr>
+</tbody>
+</table></div>
+<p>输入与运行管理接收病例清单、参考资源和配置，安排任务执行（MOD-01～02）。报告与发布层消费各模块的结构化结果、指标和状态（MOD-14）。</p>
+<p>每份交接产物记录病例 ID、样本角色、参考版本、产物类型、生成方法和状态。状态沿用草案中的 <code>MATERIALIZED</code>、<code>EMPTY</code>、<code>NOT_REQUESTED</code>、<code>SKIPPED_UNSUPPORTED</code>、<code>FAILED</code>。例如，没有检出候选属于成功但结果为空，未提供 RNA 的病例应保留并继续执行适用的 DNA 路径。<a href="../03_interfaces/interface-conventions.html#共享类型">接口约定</a></p>
+<h2 id="跨模块数据依赖">跨模块数据依赖</h2>
+<pre class="mermaid"><code>flowchart LR
+    reads[&quot;测序数据准备与 DNA 比对&quot;] --&gt; variants[&quot;DNA 变异与注释&quot;]
+    reads --&gt; hla[&quot;HLA 分型&quot;]
+    reads --&gt; tumor[&quot;肿瘤特征&quot;]
+    reads -. &quot;RNA reads&quot; .-&gt; rna[&quot;RNA 表达与事件&quot;]
+    variants --&gt; tumor
+    variants -. &quot;变异与结构变异证据&quot; .-&gt; rna
+    hla -. &quot;NeoFuse 兼容路径&quot; .-&gt; rna
+    variants --&gt; candidates[&quot;新抗原候选与呈递预测&quot;]
+    hla --&gt; candidates
+    tumor --&gt;|纯度| candidates
+    rna -. &quot;RNA 支持和转录事件&quot; .-&gt; candidates
+    candidates --&gt; immune[&quot;免疫证据分析&quot;]
+    tumor -. &quot;CCF&quot; .-&gt; immune
+    reads -. &quot;MiXCR 支线&quot; .-&gt; immune</code></pre>
+<ul>
+<li><strong>分别输出各阶段 BAM。</strong> HLA 使用重复标记后的 DNA BAM，Mutect2 等调用器使用重校准后的 BAM。旧版 BAM 入口先转 FASTQ 再比对，直接复用已有比对结果需要单独验证。BAM 入口 · Mutect2 输入 · HLA 的 DNA 取证</li>
+<li><strong>RNA 证据与候选预测共用一次 NeoFuse 执行。</strong> 旧 NeoFuse 接收 RNA reads、已确定的 HLA 和适用的 Manta 证据，一次产出 RNA BAM、TPM 和融合候选。编排层将 RNA 产物交给 E、将融合候选交给 F。RNA HLA 直接使用准备好的 reads，因此无需等待 NeoFuse 生成 RNA BAM。RNA reads 分流 · NeoFuse 的输入和输出</li>
+<li><strong>常规候选显式接收注释、定相状态、HLA 和纯度。</strong> 有 RNA 时附加表达及读段支持。纯度同时保留数值与来源，覆盖 ASCAT、Sequenza 及默认值路径。MiXCR 从 reads 独立启动。纯度选择 · pVACseq 输入 · MiXCR 输入</li>
+</ul>
+<h2 id="验证步骤">验证步骤</h2>
+<ol type="1">
+<li><strong>建立可回放的旧版基线。</strong> 选一个能够产出非空常规候选的配对 WES DNA 病例，保存各边界中间产物和执行记录。固定旧版提交、实际生效的参数和调用器集合、工具或镜像版本、参考及索引、注释和模型版本。运行旧版时按项目说明固定 Nextflow <code>22.10.8</code>。README 提供的最小数据集适合验证流程能否跑通，需要设置 <code>--CNVkit false</code>。CNVkit 另外使用覆盖充分的病例验证。旧版运行与测试数据 · <a href="https://docs.seqera.io/nextflow/migrations/dsl1">Nextflow DSL1 迁移说明</a></li>
+<li><strong>以旧版产物逐块回放。</strong> 将相同的旧上游产物送入新模块。例如，用同一份注释 VCF、定相状态、HLA 和实际纯度执行新候选预测模块，先比较全量和过滤候选表，再将结果接入旧后处理，检查上下游接口能否正常交接。</li>
+<li><strong>补齐端到端场景。</strong> 在相同输入与方法下运行新旧流程，先验收配对 WES DNA，再覆盖 BAM 输入、仅 Class I、无定相、零候选、工具失败和正常 RNA。用两个病例混跑，其中只有一个提供 RNA，检查候选和证据有没有串样或漏样。扩展 RNA 支持时覆盖 3′ tag，核对实际生效的过滤配置与剪接分支状态。RNA 过滤与剪接分支</li>
+</ol>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>比较对象</th>
+<th>通过条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reads 与 BAM</td>
+<td>样本角色、文件和索引配对、关键读段记录、比对坐标、标志位和覆盖指标符合约定。</td>
+</tr>
+<tr>
+<td>变异与定相</td>
+<td>用参考版本及规范化的 <code>CHROM/POS/REF/ALT</code> 对齐，核对过滤状态、深度、支持调用器、转录本注释和相位关系。</td>
+</tr>
+<tr>
+<td>HLA 与肿瘤特征</td>
+<td>核对 HLA 等位基因、Class II 配对与来源，比较纯度来源和回退结果，核对 TMB 的突变数和可评估区域大小。</td>
+</tr>
+<tr>
+<td>常规候选及后处理</td>
+<td>按病例、事件、转录本、突变肽、HLA、MHC 类别和来源匹配，保留重复计数。候选身份、过滤去留和分支结果须一致。浮点分数按字段设容差，阈值两侧的入选判定须一致。纳入最终发布表的验收时，还要比较 CCF 与参考蛋白匹配结果。</td>
+</tr>
+<tr>
+<td>报告</td>
+<td>核对结构化指标、单位、结果状态与发布路径。压缩字节、无语义的行序和运行时间戳允许变化。</td>
+</tr>
+</tbody>
+</table></div>
+<p>用小样例锁定两处旧行为。共识测试让主调用器和确认调用器在同一位置分别产生不同 ALT，记录旧版是否计入支持。CCF 测试让候选在 CCF 表中无精确匹配，检查前向填充是否带入另一位点的值。确认后如需改变科学规则，应记录预期差异，并为新规则保留独立的预期结果。旧共识实现 · 旧 CCF 合并 · <a href="../05_testing/scientific-equivalence-plan.html#分阶段比较">科学等价测试计划</a></p>
+<h2 id="首轮验收范围">首轮验收范围</h2>
+<p>首轮验收限定为 <strong>配对 WES DNA → pVACseq 常规候选全量表和过滤表</strong>。若新旧两边使用相同的调用器集合和纯度策略，可比较该范围内的整条流程。若按草案缩减调用器，或使用配置值提供纯度，应先验证新流程能接通。用旧版共识 VCF 与实际纯度回放时，等价结论从对应的交接点开始。要验收旧版最终发布表，再将 CCF 和参考蛋白匹配纳入对照。<a href="../07_migration/incremental-roadmap.html#增量迁移路线">增量迁移路线</a></p>
+<p>第一份验收材料应包含一个 WES 病例的旧版边界产物、版本与参数记录，以及同一输入下新候选预测模块的差异报告。首期完整交付还包括聚合、初版报告和既有运行验收项。</p>
+<p>模块与接口对应关系见 <a href="module-map.html">模块地图</a> 和 <a href="../../typed-edge-matrix.html">产物依赖矩阵</a>。需要替换具体算法时，查阅 <a href="second-layer-algorithm-inventory.html">第二层算法清单</a> 和 <a href="../07_migration/incremental-roadmap.html#首批算法替代试点">首批试点</a>。</p>
+</article>
+      <footer class="page-footer">nextNEOpi Software Plan · Design API，不表示实现已完成</footer>
+    </main>
+    <aside class="page-toc" aria-label="On this page"><h2>本页内容</h2><ol><li class="toc-level-2"><a href="#第一层功能划分">第一层功能划分</a></li><li class="toc-level-2"><a href="#跨模块数据依赖">跨模块数据依赖</a></li><li class="toc-level-2"><a href="#验证步骤">验证步骤</a></li><li class="toc-level-2"><a href="#首轮验收范围">首轮验收范围</a></li></ol></aside>
+  </div>
+</body>
+</html>

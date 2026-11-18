@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nextneopi.example/schemas/site-profile-v1.json",
+  "title": "nextNEOpi SiteProfile v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "profile_id", "backend", "limits", "container", "storage"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "profile_id": {"type": "string", "pattern": "^[a-z][a-z0-9_.-]*$"},
+    "backend": {"enum": ["local", "slurm"]},
+    "slurm": {"$ref": "#/$defs/slurm"},
+    "limits": {"$ref": "#/$defs/limits"},
+    "container": {"$ref": "#/$defs/container"},
+    "storage": {"$ref": "#/$defs/storage"},
+    "retry": {"$ref": "#/$defs/retry"},
+    "resource_classes": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z][a-z0-9_.-]*$"},
+      "additionalProperties": {"$ref": "#/$defs/resourceClass"}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"backend": {"const": "slurm"}}, "required": ["backend"]},
+      "then": {"required": ["slurm"]}
+    }
+  ],
+  "$defs": {
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_memory_mb", "max_concurrent_tasks", "max_runtime_minutes"],
+      "properties": {
+        "max_cpus": {"type": "integer", "minimum": 1},
+        "max_cpus_per_task": {"type": "integer", "minimum": 1},
+        "max_memory_mb": {"type": "integer", "minimum": 128},
+        "max_concurrent_tasks": {"type": "integer", "minimum": 1},
+        "max_runtime_minutes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "container": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runtime", "clean_environment", "image_cache", "require_digest", "network"],
+      "properties": {
+        "runtime": {"const": "apptainer"},
+        "clean_environment": {"type": "boolean"},
+        "image_cache": {"type": "string", "minLength": 1},
+        "require_digest": {"type": "boolean"},
+        "network": {"enum": ["disabled", "allowlisted"]}
+      }
+    },
+    "storage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["work_uri", "cache_uri", "scratch_uri", "atomic_publish"],
+      "properties": {
+        "work_uri": {"type": "string", "minLength": 1},
+        "cache_uri": {"type": "string", "minLength": 1},
+        "scratch_uri": {"type": "string", "minLength": 1},
+        "atomic_publish": {"type": "boolean"},
+        "shared_filesystem_latency_seconds": {"type": "integer", "minimum": 0},
+        "stage_to_node_scratch": {"type": "boolean"}
+      }
+    },
+    "retry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status_poll_seconds": {"type": "integer", "minimum": 1},
+        "transient_backoff_seconds": {"type": "array", "items": {"type": "integer", "minimum": 0}}
+      }
+    },
+    "slurm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["account", "default_partition", "max_submitted_jobs", "status_poll_seconds", "use_job_arrays", "array_limit", "requeue_transient_failures", "keep_failed_logs_days"],
+      "properties": {
+        "account": {"type": "string", "minLength": 1},
+        "default_partition": {"type": "string", "minLength": 1},
+        "high_memory_partition": {"type": ["string", "null"]},
+        "qos": {"type": ["string", "null"]},
+        "max_submitted_jobs": {"type": "integer", "minimum": 1},
+        "status_poll_seconds": {"type": "integer", "minimum": 1},
+        "use_job_arrays": {"type": "boolean"},
+        "array_limit": {"type": "integer", "minimum": 1},
+        "requeue_transient_failures": {"type": "boolean"},
+        "keep_failed_logs_days": {"type": "integer", "minimum": 0}
+      }
+    },
+    "resourceClass": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["partition", "memory_mb", "runtime_minutes"],
+      "properties": {
+        "partition": {"type": "string"},
+        "memory_mb": {"type": "integer", "minimum": 128},
+        "runtime_minutes": {"type": "integer", "minimum": 1},
+        "cpus": {"type": "integer", "minimum": 1}
+      }
+    }
+  }
+}

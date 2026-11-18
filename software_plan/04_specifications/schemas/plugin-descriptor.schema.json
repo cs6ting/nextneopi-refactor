@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nextneopi.example/schemas/plugin-descriptor-v1.json",
+  "title": "nextNEOpi PluginDescriptor v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "capability_id",
+    "implementation_id",
+    "contract_version",
+    "implementation_version",
+    "supports",
+    "inputs",
+    "outputs",
+    "reference_requirements",
+    "container",
+    "resources",
+    "license",
+    "scatter",
+    "empty_input",
+    "degradation",
+    "implementation_config_schema"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "capability_id": {"type": "string", "pattern": "^IF-[A-Z]+-[0-9]{3}$"},
+    "implementation_id": {"type": "string", "pattern": "^[a-z][a-z0-9_.-]*$"},
+    "contract_version": {"$ref": "#/$defs/semver"},
+    "implementation_version": {"$ref": "#/$defs/semver"},
+    "core_compatibility": {"type": ["string", "null"]},
+    "supports": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assays", "molecules", "layouts", "mhc_classes", "variant_kinds", "features", "protocols"],
+      "properties": {
+        "assays": {"$ref": "#/$defs/stringSet"},
+        "molecules": {"$ref": "#/$defs/stringSet"},
+        "layouts": {"$ref": "#/$defs/stringSet"},
+        "mhc_classes": {"$ref": "#/$defs/stringSet"},
+        "variant_kinds": {"$ref": "#/$defs/stringSet"},
+        "features": {"$ref": "#/$defs/stringSet"},
+        "protocols": {"$ref": "#/$defs/stringSet"}
+      }
+    },
+    "inputs": {"type": "array", "items": {"$ref": "#/$defs/ioSpec"}},
+    "outputs": {"type": "array", "items": {"$ref": "#/$defs/ioSpec"}},
+    "reference_requirements": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "container": {
+      "anyOf": [
+        {"type": "null"},
+        {"$ref": "#/$defs/containerSpec"}
+      ]
+    },
+    "resources": {"$ref": "#/$defs/resourceModel"},
+    "license": {"$ref": "#/$defs/licenseRequirement"},
+    "scatter": {"$ref": "#/$defs/scatterCapability"},
+    "empty_input": {"enum": ["accept", "reject", "typed_empty"]},
+    "degradation": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "implementation_config_schema": {
+      "anyOf": [
+        {"type": "null"},
+        {"type": "string", "minLength": 1}
+      ]
+    }
+  },
+  "$defs": {
+    "semver": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$"},
+    "stringSet": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "ioSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "artifact_kind", "schema_version", "required"],
+      "properties": {
+        "name": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+        "artifact_kind": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+        "schema_version": {"$ref": "#/$defs/semver"},
+        "required": {"type": "boolean"}
+      }
+    },
+    "containerSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["oci", "digest", "runtime", "entrypoint", "environment_allowlist"],
+      "properties": {
+        "oci": {"type": "string", "minLength": 1},
+        "digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+        "runtime": {"const": "apptainer"},
+        "entrypoint": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "environment_allowlist": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "resourceModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cpus", "memory_mb", "runtime_minutes", "scratch_mb", "gpus", "nodes", "tasks", "scaling_model", "scientific_resource_fields"],
+      "properties": {
+        "cpus": {"type": "integer", "minimum": 1},
+        "memory_mb": {"type": "integer", "minimum": 128},
+        "runtime_minutes": {"type": "integer", "minimum": 1},
+        "scratch_mb": {"type": "integer", "minimum": 0},
+        "gpus": {"type": "integer", "minimum": 0},
+        "nodes": {"type": "integer", "minimum": 1},
+        "tasks": {"type": "integer", "minimum": 1},
+        "scaling_model": {"type": ["string", "null"]},
+        "scientific_resource_fields": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "licenseRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "redistributable", "acceptance_required", "mount_required"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "redistributable": {"type": "boolean"},
+        "acceptance_required": {"type": "boolean"},
+        "mount_required": {"type": "boolean"}
+      }
+    },
+    "scatterCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["supported", "axes", "partial_gather"],
+      "properties": {
+        "supported": {"type": "boolean"},
+        "axes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "partial_gather": {"type": "boolean"}
+      }
+    }
+  }
+}

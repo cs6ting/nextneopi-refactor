@@ -1,0 +1,29 @@
+schema_version: 1
+profile_id: local-default
+backend: local
+
+limits:
+  max_cpus: 16
+  max_memory_mb: 65536
+  max_concurrent_tasks: 4
+  max_runtime_minutes: 2880
+
+container:
+  runtime: apptainer
+  clean_environment: true
+  image_cache: .nextneopi/images
+  require_digest: true
+  network: disabled
+
+storage:
+  work_uri: .nextneopi/work
+  cache_uri: .nextneopi/cache
+  scratch_uri: .nextneopi/scratch
+  atomic_publish: true
+
+retry:
+  status_poll_seconds: 5
+  transient_backoff_seconds:
+    - 5
+    - 15
+    - 60

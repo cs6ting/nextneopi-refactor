@@ -1,0 +1,600 @@
+{
+  "generator": "build_html.py",
+  "generated_at": "2026-11-17T09:01:14.701466+00:00",
+  "pandoc": "pandoc 3.6.3",
+  "page_count": 107,
+  "asset_count": 11,
+  "raw_sources_dir": "_sources",
+  "sources": [
+    {
+      "source": "08_api_reference/api-conventions.md",
+      "output": "api-conventions.html",
+      "sha256": "e932bdd21033b5d55402f612424e18ae65962afc44f52dca2e848957de320528"
+    },
+    {
+      "source": "08_api_reference/api-overview.md",
+      "output": "api-overview.html",
+      "sha256": "27e8b81a079e3e991620f7b31c54cd05c2de5409e5f9e847f3db93efff30ea5e"
+    },
+    {
+      "source": "04_specifications/schemas/artifact.schema.json",
+      "output": "assets/artifact.schema.json",
+      "sha256": "4e74ddddbaf4164a8ecfd62f0615906a89b93d139c984fa17ca4cfa91a611c61"
+    },
+    {
+      "source": "04_specifications/schemas/case-manifest.schema.json",
+      "output": "assets/case-manifest.schema.json",
+      "sha256": "54c38f40c28947d695ee1816042733fc5bdce8d37c8c91789e24cb14f782502b"
+    },
+    {
+      "source": "04_specifications/examples/fastp-plugin-descriptor.json",
+      "output": "assets/fastp-plugin-descriptor.json",
+      "sha256": "d88a41275ee0f4738b97d21e7f0801ecbbc44bb992f21dd71515fea88d05ed8e"
+    },
+    {
+      "source": "08_api_reference/interface-inventory.json",
+      "output": "assets/interface-inventory.json",
+      "sha256": "03eda1aafaf8cc887b4a63340e7586b1436aedb6101c29b535e57256beaae2d9"
+    },
+    {
+      "source": "04_specifications/examples/local-profile.yaml",
+      "output": "assets/local-profile.yaml",
+      "sha256": "2be7aa59c92303a31daeb144d9c0dc10408c0620cb0f70aba5b12f6e042c0f5b"
+    },
+    {
+      "source": "04_specifications/schemas/plugin-descriptor.schema.json",
+      "output": "assets/plugin-descriptor.schema.json",
+      "sha256": "b327bd7c89244dab352c478b223b741eef76d8614e4103f6f1379c4580164dac"
+    },
+    {
+      "source": "04_specifications/schemas/result-envelope.schema.json",
+      "output": "assets/result-envelope.schema.json",
+      "sha256": "b05a0f111462aa187fa176f81a8a7ce7236378f2d1712487cc7f249b800f53f6"
+    },
+    {
+      "source": "04_specifications/schemas/run-config.schema.json",
+      "output": "assets/run-config.schema.json",
+      "sha256": "08406c2ea65ab16bd4435b7a748e69b6801302712f54850c376e3cadcf11f4b8"
+    },
+    {
+      "source": "04_specifications/schemas/site-profile.schema.json",
+      "output": "assets/site-profile.schema.json",
+      "sha256": "91b81e27dd5b7afd42b5c0490c965fcfcf3124156dc1b8f8d094c27ae52e8a1c"
+    },
+    {
+      "source": "04_specifications/examples/slurm-profile.yaml",
+      "output": "assets/slurm-profile.yaml",
+      "sha256": "72af7c1463e12f29de85e41b61b462bbbdad3b7cff7ac8bae51dd582008dd4d1"
+    },
+    {
+      "source": "04_specifications/examples/wes-dna-canonical.yaml",
+      "output": "assets/wes-dna-canonical.yaml",
+      "sha256": "b76f00dde614677f8a0baeb33bf4281558b6afe7d69e568f2c31439f1ca19016"
+    },
+    {
+      "source": "08_api_reference/capabilities/alignment.md",
+      "output": "capabilities/alignment.html",
+      "sha256": "182ab0ae2c089e970de43f8d503a9a66d81238c64322fbdedd4fc3dbfe6c1b0b"
+    },
+    {
+      "source": "08_api_reference/capabilities/annotation_phasing.md",
+      "output": "capabilities/annotation_phasing.html",
+      "sha256": "cbe1eebcbbb85da60fcf073835bc5ae012f27d30c6d9063d9bb6587b6617ff10"
+    },
+    {
+      "source": "08_api_reference/capabilities/ccf_tmb.md",
+      "output": "capabilities/ccf_tmb.html",
+      "sha256": "f42b00a82333176cd16b62f9673c7f6977f04ef2d74498413c875f7ff4fb16e0"
+    },
+    {
+      "source": "08_api_reference/capabilities/copy_number.md",
+      "output": "capabilities/copy_number.html",
+      "sha256": "a89f8928632898d01f75acd8a7163056e133edeafd78c03c6d29fcc9ba883cf4"
+    },
+    {
+      "source": "08_api_reference/capabilities/fusion_splicing.md",
+      "output": "capabilities/fusion_splicing.html",
+      "sha256": "1a5ca7e1a17aee1fb5a863068d17d54d051e9f235738016a788f66e291cb4c75"
+    },
+    {
+      "source": "08_api_reference/capabilities/hla.md",
+      "output": "capabilities/hla.html",
+      "sha256": "0bf44a4b127f7d026e90b873cbb999e84be0c3f46ce8abc1f6ea036d578ab5d8"
+    },
+    {
+      "source": "08_api_reference/capabilities/immunogenicity_repertoire.md",
+      "output": "capabilities/immunogenicity_repertoire.html",
+      "sha256": "0a11e61ddde7d74a8358b37cf6c97893f5b8a97c2e75fff9e7654bd431fd0fe0"
+    },
+    {
+      "source": "08_api_reference/capabilities/input_reference.md",
+      "output": "capabilities/input_reference.html",
+      "sha256": "29a9b77e971cbd86370b9aaf756d4eff9d87eccf52d5d6754273a72f1d56b599"
+    },
+    {
+      "source": "08_api_reference/capabilities/neoantigens.md",
+      "output": "capabilities/neoantigens.html",
+      "sha256": "e8758261a5184a9b1e9754f05cba8abe652ef0fcddb701bee235ce2a3f6e2148"
+    },
+    {
+      "source": "08_api_reference/capabilities/reads_qc.md",
+      "output": "capabilities/reads_qc.html",
+      "sha256": "6f060ca1f5ec3d4ad61b6f2e5576e11253326767e4ff9fef597aade52e3a1efe"
+    },
+    {
+      "source": "08_api_reference/capabilities/reporting.md",
+      "output": "capabilities/reporting.html",
+      "sha256": "85e2385f9fca38c582f7b240efd5363225567f244a12e1b56a9cbbe8ad1399da"
+    },
+    {
+      "source": "08_api_reference/capabilities/rna.md",
+      "output": "capabilities/rna.html",
+      "sha256": "733dd7134e098e15526951c682e3f558635ac373224de07af1842499daeba22b"
+    },
+    {
+      "source": "08_api_reference/capabilities/variants.md",
+      "output": "capabilities/variants.html",
+      "sha256": "fee4a74f8c6ca3122d780b64b7621b1122757fb63680bf15c4cbdb789b00cf71"
+    },
+    {
+      "source": "00_requirements/functional-requirements.md",
+      "output": "design/00_requirements/functional-requirements.html",
+      "sha256": "50c9b402eb8fcabaa9046d600608d6c036b2f9e0eec1b8235c890b251eaf6aea"
+    },
+    {
+      "source": "00_requirements/glossary.md",
+      "output": "design/00_requirements/glossary.html",
+      "sha256": "7b79adb133b87a040202768e8589ab1f1329c82fec8c5e50f62daa7ed551f334"
+    },
+    {
+      "source": "00_requirements/non-functional-requirements.md",
+      "output": "design/00_requirements/non-functional-requirements.html",
+      "sha256": "548c27c553c871bf5b6f3431f8a2dbd0740aa91ddf1951c3ed6d258cf5414162"
+    },
+    {
+      "source": "00_requirements/scope-and-goals.md",
+      "output": "design/00_requirements/scope-and-goals.html",
+      "sha256": "64a9b5625d6c80c522d203a5b48eccfb7cbb981915621a1a034db8c03046353a"
+    },
+    {
+      "source": "00_requirements/traceability-matrix.md",
+      "output": "design/00_requirements/traceability-matrix.html",
+      "sha256": "6a157f5ccf2afa7cf5d9539d5a745c30750dba7d9e91012d1dd6533cc7e77a14"
+    },
+    {
+      "source": "01_architecture/architecture-overview.md",
+      "output": "design/01_architecture/architecture-overview.html",
+      "sha256": "63e7665ad89c667884a134cc0e527df29be5d7c208566cdb1ff0799bf25f0066"
+    },
+    {
+      "source": "01_architecture/artifact-and-data-model.md",
+      "output": "design/01_architecture/artifact-and-data-model.html",
+      "sha256": "b748f2462489d2613bde551dff72593fa6601a6add954a4b45fd5946a6f71f85"
+    },
+    {
+      "source": "01_architecture/configuration-architecture.md",
+      "output": "design/01_architecture/configuration-architecture.html",
+      "sha256": "8fa6e5be84fb54c32fe0abdcb5a1658011131a48acbfb549cbd9305319b16716"
+    },
+    {
+      "source": "01_architecture/decisions/ADR-001-python-architecture.md",
+      "output": "design/01_architecture/decisions/ADR-001-python-architecture.html",
+      "sha256": "a7e22b2a122f752cad01672d7090725c66425abb1339722802c2b2d63296002c"
+    },
+    {
+      "source": "01_architecture/decisions/ADR-002-execution-backend.md",
+      "output": "design/01_architecture/decisions/ADR-002-execution-backend.html",
+      "sha256": "e0431e1e91080e148962c32e61596fe31e212bead402f2b64d815a6e546d64ad"
+    },
+    {
+      "source": "01_architecture/decisions/ADR-003-plugin-discovery.md",
+      "output": "design/01_architecture/decisions/ADR-003-plugin-discovery.html",
+      "sha256": "1fa10b4170c7e807c6ced5a740c1600930077b45fb0a8219680c6e20dff3000e"
+    },
+    {
+      "source": "01_architecture/decisions/ADR-004-artifact-and-cache.md",
+      "output": "design/01_architecture/decisions/ADR-004-artifact-and-cache.html",
+      "sha256": "d9bc467a0194cb438801723e036814cfd4179fc7611d9d4774935fe04758a61f"
+    },
+    {
+      "source": "01_architecture/decisions/ADR-005-container-strategy.md",
+      "output": "design/01_architecture/decisions/ADR-005-container-strategy.html",
+      "sha256": "9b26d6050737693c14faae314b2a9bc0cd1711fddd802f4c7a7de6bd77019c90"
+    },
+    {
+      "source": "01_architecture/deployment-and-containers.md",
+      "output": "design/01_architecture/deployment-and-containers.html",
+      "sha256": "fb9f2113e570e16a2e96b8255bae037aefbf46f248c625940dbd8d333cd0ff57"
+    },
+    {
+      "source": "01_architecture/domain-model.md",
+      "output": "design/01_architecture/domain-model.html",
+      "sha256": "755c88f011dbc0f62f21e2497ac31a0f0539d88360ef2d49b68477f1ca07793d"
+    },
+    {
+      "source": "01_architecture/provenance-and-observability.md",
+      "output": "design/01_architecture/provenance-and-observability.html",
+      "sha256": "ce32e25501f4eefca9448ca5d5932d93a6e8257cb95e02706e54feddbb62928d"
+    },
+    {
+      "source": "01_architecture/security-and-licenses.md",
+      "output": "design/01_architecture/security-and-licenses.html",
+      "sha256": "d9dc250da5d29d47b5695625c28b163960747b545461afd6bab5b8ef478c2e2c"
+    },
+    {
+      "source": "01_architecture/workflow-runtime.md",
+      "output": "design/01_architecture/workflow-runtime.html",
+      "sha256": "4fc28dc34093c708c267abff77d3adc7c8cbaa3791cb8f8b00958762e89c02b2"
+    },
+    {
+      "source": "02_modules/MOD-01-input-and-manifest.md",
+      "output": "design/02_modules/MOD-01-input-and-manifest.html",
+      "sha256": "45397b45e5c40fa042be658058709a3dce92a0d53632e5ede134568eac61bd67"
+    },
+    {
+      "source": "02_modules/MOD-02-reference-and-intervals.md",
+      "output": "design/02_modules/MOD-02-reference-and-intervals.html",
+      "sha256": "1d37d7bed85b3343b4159e81bc3b0904c66f50d6108f05b6f64dada1a0db16be"
+    },
+    {
+      "source": "02_modules/MOD-03-read-preprocessing-and-qc.md",
+      "output": "design/02_modules/MOD-03-read-preprocessing-and-qc.html",
+      "sha256": "c01c39f59bdf4bba4b440e02151b2e4408c04c681f186a1a296751155504adf1"
+    },
+    {
+      "source": "02_modules/MOD-04-dna-alignment.md",
+      "output": "design/02_modules/MOD-04-dna-alignment.html",
+      "sha256": "f440b75ff282cb0ad8d3534448b65c4ce6c7aa32b2233da3014ac71abaa641fd"
+    },
+    {
+      "source": "02_modules/MOD-05-somatic-variants.md",
+      "output": "design/02_modules/MOD-05-somatic-variants.html",
+      "sha256": "4167d693d115b337798e2883c6629e2c287278eb29d64ec70b77f0bb1ea8d460"
+    },
+    {
+      "source": "02_modules/MOD-06-annotation-and-phasing.md",
+      "output": "design/02_modules/MOD-06-annotation-and-phasing.html",
+      "sha256": "f22163131534008456d689cee3abfed78c15f19f956d6ac72fd8d093485fb0ac"
+    },
+    {
+      "source": "02_modules/MOD-07-hla-typing.md",
+      "output": "design/02_modules/MOD-07-hla-typing.html",
+      "sha256": "2bfee873455ae8265f7fbf8e7083e80a6f45e1eeeb67358efce663f49e30c7c7"
+    },
+    {
+      "source": "02_modules/MOD-08-copy-number-and-purity.md",
+      "output": "design/02_modules/MOD-08-copy-number-and-purity.html",
+      "sha256": "6ef539014b2b9a6b6170aaaf7b51a09d072a73f41b082c508f6cad989be70fd0"
+    },
+    {
+      "source": "02_modules/MOD-09-ccf-and-tmb.md",
+      "output": "design/02_modules/MOD-09-ccf-and-tmb.html",
+      "sha256": "71b2acbf1c4e61abca758b8e828135fc44f6e73cd4eff125a751a30dca7a4266"
+    },
+    {
+      "source": "02_modules/MOD-10-rna-expression.md",
+      "output": "design/02_modules/MOD-10-rna-expression.html",
+      "sha256": "7174d9cb6cdce6be713bd4520eca50934fd549e5cad13534aba63b857beaf8d0"
+    },
+    {
+      "source": "02_modules/MOD-11-fusion-and-splicing.md",
+      "output": "design/02_modules/MOD-11-fusion-and-splicing.html",
+      "sha256": "720c4a77906b42f8ab4d4ac3fef220bd3da0b289f869839eb2616e3dbac10fbd"
+    },
+    {
+      "source": "02_modules/MOD-12-neoantigen-prediction.md",
+      "output": "design/02_modules/MOD-12-neoantigen-prediction.html",
+      "sha256": "c3e40abb26a199449eb2c750402569803fc64deac027d15006fc95d477dab536"
+    },
+    {
+      "source": "02_modules/MOD-13-immunogenicity-and-repertoire.md",
+      "output": "design/02_modules/MOD-13-immunogenicity-and-repertoire.html",
+      "sha256": "44b0ec2be53144f137acb62d14815a4991dcef4a5646cee2efd4249cffdc0a65"
+    },
+    {
+      "source": "02_modules/MOD-14-reporting.md",
+      "output": "design/02_modules/MOD-14-reporting.html",
+      "sha256": "84e1445d5b336ca4c05da94aa19170d2c5075e210c45870b4707abd33984ac65"
+    },
+    {
+      "source": "02_modules/first-layer-functional-design.md",
+      "output": "design/02_modules/first-layer-functional-design.html",
+      "sha256": "53332d0cefa50ff259ddb8ea76c373bb9648f40ed57ec9c2a7be54f405bfca94"
+    },
+    {
+      "source": "02_modules/module-map.md",
+      "output": "design/02_modules/module-map.html",
+      "sha256": "b3ef5e314c8c366041eb415a126219ccde567693ece959af86083f99d8e37e37"
+    },
+    {
+      "source": "02_modules/second-layer-algorithm-inventory.md",
+      "output": "design/02_modules/second-layer-algorithm-inventory.html",
+      "sha256": "d9394bb2ec8e173ecb0de4a0716fd543aebb363915df83a187a9155ad3514fcb"
+    },
+    {
+      "source": "03_interfaces/artifact-store-contract.md",
+      "output": "design/03_interfaces/artifact-store-contract.html",
+      "sha256": "020146232dd6ea930b904e7c766f836acc56b49403645e557156ef78f7298bf2"
+    },
+    {
+      "source": "03_interfaces/capability-model.md",
+      "output": "design/03_interfaces/capability-model.html",
+      "sha256": "0960831669690741f52964c696a56ce880d0051b40357a4b3b9bec1ea742320d"
+    },
+    {
+      "source": "03_interfaces/cnv-ccf-tmb-interfaces.md",
+      "output": "design/03_interfaces/cnv-ccf-tmb-interfaces.html",
+      "sha256": "d2093e742995786c6e61b26ed50ace72eb8055779fa4b5dacb3b850aeccdb359"
+    },
+    {
+      "source": "03_interfaces/examples/IF-VAR-004-build-consensus-somatic-callset.md",
+      "output": "design/03_interfaces/examples/IF-VAR-004-build-consensus-somatic-callset.html",
+      "sha256": "cedc671cc0c3e1c92581ebae2437c1c23c4cc35f41087304fee1f52cb54bf89d"
+    },
+    {
+      "source": "03_interfaces/execution-backend-contract.md",
+      "output": "design/03_interfaces/execution-backend-contract.html",
+      "sha256": "728544d62bfec3ee161330040c66015d035cd046ea839f818783766ad9d368b8"
+    },
+    {
+      "source": "03_interfaces/hla-interfaces.md",
+      "output": "design/03_interfaces/hla-interfaces.html",
+      "sha256": "3324dc70966ad9328dbe7923a167fe5f12936dc6c54db021c44fd512e8f06f98"
+    },
+    {
+      "source": "03_interfaces/input-reference-interfaces.md",
+      "output": "design/03_interfaces/input-reference-interfaces.html",
+      "sha256": "c889d680c83f0b9bce74231f0e1cc0eb9fff1239e70fe2b528df3fe62e5e0f46"
+    },
+    {
+      "source": "03_interfaces/interface-conventions.md",
+      "output": "design/03_interfaces/interface-conventions.html",
+      "sha256": "ff469ec6c887c6f5e22a84b2d0252193d2e7cf7ee97b53a8eea69e38baae30fe"
+    },
+    {
+      "source": "03_interfaces/neoantigen-interfaces.md",
+      "output": "design/03_interfaces/neoantigen-interfaces.html",
+      "sha256": "d867bad5b6bc5497971a690f2656b1cabc636c444f64be823fab219380d9c821"
+    },
+    {
+      "source": "03_interfaces/plugin-contract.md",
+      "output": "design/03_interfaces/plugin-contract.html",
+      "sha256": "656c46c7dedc08a1add6cb6cd6528cfcee08f4902f5a7ec4b74759e773703ba8"
+    },
+    {
+      "source": "03_interfaces/qc-alignment-interfaces.md",
+      "output": "design/03_interfaces/qc-alignment-interfaces.html",
+      "sha256": "847df3fcaef058d8828e23493a7ed7ac77e536da9046aea0fa12403d34dbd13d"
+    },
+    {
+      "source": "03_interfaces/reporting-interfaces.md",
+      "output": "design/03_interfaces/reporting-interfaces.html",
+      "sha256": "d5e1e13422ce375fdb6539446034b057a2bcd8da6e9fc4b433c470622eb77f56"
+    },
+    {
+      "source": "03_interfaces/rna-fusion-splicing-interfaces.md",
+      "output": "design/03_interfaces/rna-fusion-splicing-interfaces.html",
+      "sha256": "103fde950427128cea3795d4135848ef8d354aaac9ce419216b8ac9123571dad"
+    },
+    {
+      "source": "03_interfaces/variant-interfaces.md",
+      "output": "design/03_interfaces/variant-interfaces.html",
+      "sha256": "b299df4f2c9aa2882c05bd1c8de86f9d05e186a8175faf4df7c59b844bbae1a9"
+    },
+    {
+      "source": "04_specifications/cli-and-sdk-specification.md",
+      "output": "design/04_specifications/cli-and-sdk-specification.html",
+      "sha256": "b4c0938dc37eafedd48aeb64f6fb3057fa4e0a2b0ff7fe2a4390af9c441764b0"
+    },
+    {
+      "source": "04_specifications/configuration-specification.md",
+      "output": "design/04_specifications/configuration-specification.html",
+      "sha256": "45b5d16c573b71b858673524ad9b0de4f12327cd17a8bdcecc8ce641b6d14b3d"
+    },
+    {
+      "source": "04_specifications/error-and-status-model.md",
+      "output": "design/04_specifications/error-and-status-model.html",
+      "sha256": "1d5ea37f68dfcdb7d3042958fedcd202434c42b17b353666c5b52850cbdd23f5"
+    },
+    {
+      "source": "04_specifications/output-layout.md",
+      "output": "design/04_specifications/output-layout.html",
+      "sha256": "cd8c3d50213d8e0068c54a0856ee9d8c03ac66caea1cc06d6df4cdfbc9c43f0c"
+    },
+    {
+      "source": "04_specifications/provenance-specification.md",
+      "output": "design/04_specifications/provenance-specification.html",
+      "sha256": "f95722a288bc0f6da3a1484b6a6e7718688f39a9c716449efef1477ae6734552"
+    },
+    {
+      "source": "04_specifications/resource-model.md",
+      "output": "design/04_specifications/resource-model.html",
+      "sha256": "af7a7d0f9d7dd37b60405a2508bdcddaef9687729195682ca030c8942eec7b6e"
+    },
+    {
+      "source": "05_testing/acceptance-test-matrix.md",
+      "output": "design/05_testing/acceptance-test-matrix.html",
+      "sha256": "7a357b246ad4476e5fa97ba9d1645b8061e4adceee12634aac5b1d11073bae72"
+    },
+    {
+      "source": "05_testing/contract-test-plan.md",
+      "output": "design/05_testing/contract-test-plan.html",
+      "sha256": "0d88c25ea1f01ba3e3d24bffea2504e93fa9fb3b0bbe8756af41d21b8232ae06"
+    },
+    {
+      "source": "05_testing/integration-test-plan.md",
+      "output": "design/05_testing/integration-test-plan.html",
+      "sha256": "88d2fca12605b6558f4956b892fc1a4c653f12f3ffb8c67a88fc746a6270b25c"
+    },
+    {
+      "source": "05_testing/performance-test-plan.md",
+      "output": "design/05_testing/performance-test-plan.html",
+      "sha256": "0b40c438a1f32a3a49aa2edbf21431550efaf888b6396da76efd1fb3aa3d4c30"
+    },
+    {
+      "source": "05_testing/scientific-equivalence-plan.md",
+      "output": "design/05_testing/scientific-equivalence-plan.html",
+      "sha256": "d71aadfe37db230ca3bf96457deae06731244c31ce9c59d23f454986aed8c95b"
+    },
+    {
+      "source": "05_testing/slurm-and-container-test-plan.md",
+      "output": "design/05_testing/slurm-and-container-test-plan.html",
+      "sha256": "58ceb8cf3a15a5af98729665fda8bc9106fad149b797a28ce4e5539f58b53f6e"
+    },
+    {
+      "source": "05_testing/system-test-plan.md",
+      "output": "design/05_testing/system-test-plan.html",
+      "sha256": "1309d29d20356a2ee489308c9614f350bb7e83e43523587c1739e541a380dc0c"
+    },
+    {
+      "source": "05_testing/test-data-strategy.md",
+      "output": "design/05_testing/test-data-strategy.html",
+      "sha256": "559d147b50cc8e0edeb3d2dc0eb439b1a9801d26d5450fa2b50c6ceab842fef3"
+    },
+    {
+      "source": "05_testing/test-strategy.md",
+      "output": "design/05_testing/test-strategy.html",
+      "sha256": "cf2be696d8af3d6bafeae67162cab92207721b3b4515f1af467ecd023fe0f51c"
+    },
+    {
+      "source": "05_testing/unit-test-plan.md",
+      "output": "design/05_testing/unit-test-plan.html",
+      "sha256": "804b408d445fe812ea561bf8b153a9f755735f0038294fb8acc2c76ac61cbb72"
+    },
+    {
+      "source": "06_quality/coding-standards.md",
+      "output": "design/06_quality/coding-standards.html",
+      "sha256": "331e7e87c5c3eeb7f66e4fbfea2e3cc004ad2936fca6e710ccad53429693f668"
+    },
+    {
+      "source": "06_quality/definition-of-done.md",
+      "output": "design/06_quality/definition-of-done.html",
+      "sha256": "21299ddf61fac14b06fa3b1a44e49e0dcac3303d691e5f9c28266d8f624bb78d"
+    },
+    {
+      "source": "06_quality/plugin-review-checklist.md",
+      "output": "design/06_quality/plugin-review-checklist.html",
+      "sha256": "6b52a0cd16fe17ac71dad66f2f989a99eec7d9a0a94d6239c77868d21dc5df16"
+    },
+    {
+      "source": "06_quality/quality-gates.md",
+      "output": "design/06_quality/quality-gates.html",
+      "sha256": "c964e2fb5889dbb3482be4a681d690c4c8337ac4a9356a9e9ff46a740a2f66cc"
+    },
+    {
+      "source": "06_quality/release-readiness-checklist.md",
+      "output": "design/06_quality/release-readiness-checklist.html",
+      "sha256": "f081610515971a1151eed8c5998fef49766883d18ca975083d3236f0f4f8aaac"
+    },
+    {
+      "source": "07_migration/compatibility-strategy.md",
+      "output": "design/07_migration/compatibility-strategy.html",
+      "sha256": "cf15d08a0cc24d3296528bd84ba368f2d4c97bda70330d21bf8cdcc30e367f88"
+    },
+    {
+      "source": "07_migration/current-to-target-mapping.md",
+      "output": "design/07_migration/current-to-target-mapping.html",
+      "sha256": "930d15189aa7730cf67ff922ecd938a2aa4fbb6b9157f83833fb8f7f5ef33f02"
+    },
+    {
+      "source": "07_migration/incremental-roadmap.md",
+      "output": "design/07_migration/incremental-roadmap.html",
+      "sha256": "b64b74ed55a09e7487901a9bc4ba661fbcb8412703d1981b5489e3617ba63c9c"
+    },
+    {
+      "source": "07_migration/nextflow-retirement-criteria.md",
+      "output": "design/07_migration/nextflow-retirement-criteria.html",
+      "sha256": "b59ebfe747d17d958941aeecb50aef1ecf88638dca9d3b10b6b05bee7d9d218d"
+    },
+    {
+      "source": "07_migration/risk-register.md",
+      "output": "design/07_migration/risk-register.html",
+      "sha256": "aad329d727e384644c4bafe65241661f9b3ffbf344eabe715ac612109d3ab054"
+    },
+    {
+      "source": "README.md",
+      "output": "design/README.html",
+      "sha256": "af35de6f55e22c10152465faee062158e9592dc460add2196bb7bc0ab7adf356"
+    },
+    {
+      "source": "08_api_reference/errors.md",
+      "output": "errors.html",
+      "sha256": "7ba471aed3222a725e350a05d7e02daad15a6eed0e9558aeca65f458f524a6dd"
+    },
+    {
+      "source": "08_api_reference/examples/implement-plugin.md",
+      "output": "examples/implement-plugin.html",
+      "sha256": "b2bad544121b65068a70ad787ca285a1bd20432c7ca804d5c96bd77edf90cb27"
+    },
+    {
+      "source": "08_api_reference/examples/quickstart.md",
+      "output": "examples/quickstart.html",
+      "sha256": "12782e36e679e8d90504ec9da19aacf2cd250407fc706e238d05725bbbb8e5aa"
+    },
+    {
+      "source": "08_api_reference/implementation-matrix.md",
+      "output": "implementation-matrix.html",
+      "sha256": "91d8dd50d21d35684c928a1828e7b74baf1466b41f12819253fc8765456de234"
+    },
+    {
+      "source": "08_api_reference/README.md",
+      "output": "index.html",
+      "sha256": "5904ee09c9f9f8c2b1aa2a365a050540e9e13732fc739addf2719c6fcde7af6f"
+    },
+    {
+      "source": "08_api_reference/nextneopi.application.md",
+      "output": "nextneopi.application.html",
+      "sha256": "eb6d806eaadcb6d10ad61049785b0b9194d44d9a5c6c7ffb7684163e51ad4a5b"
+    },
+    {
+      "source": "08_api_reference/nextneopi.config.md",
+      "output": "nextneopi.config.html",
+      "sha256": "efd5b8fd8c03734a3c5c0b0aac1f81f2322cebd506c4677d35acb7521d47f770"
+    },
+    {
+      "source": "08_api_reference/nextneopi.md",
+      "output": "nextneopi.html",
+      "sha256": "e71bf3bfd455eb302b203b7d6ffe91cb9a00d922035c211fc9e49a5ab7daec50"
+    },
+    {
+      "source": "08_api_reference/nextneopi.models.md",
+      "output": "nextneopi.models.html",
+      "sha256": "1e129366cff4bff4127bc8f2ee90a1efb143e3cfc0e493295c8ca08a315ec900"
+    },
+    {
+      "source": "08_api_reference/nextneopi.plugins.md",
+      "output": "nextneopi.plugins.html",
+      "sha256": "79b46820419d3cbe62a8eb6e926ca7d72d0b53b79eb63815681446043d9c4564"
+    },
+    {
+      "source": "08_api_reference/nextneopi.ports.md",
+      "output": "nextneopi.ports.html",
+      "sha256": "46931d4bdd545c5c468ca45c9c55f90479e23aea00de21719ef9d9fe46012528"
+    },
+    {
+      "source": "08_api_reference/nextneopi.workflows.md",
+      "output": "nextneopi.workflows.html",
+      "sha256": "663bb8e8b85b1f6938a091afdb32dcc3f940248a318999ab8e3e03d1eac8a93d"
+    },
+    {
+      "source": "08_api_reference/package-layout.md",
+      "output": "package-layout.html",
+      "sha256": "6edd91ed8a913970fb68d6b0d647c1aba89e1fbd726ef9fb44a15933ba83f855"
+    },
+    {
+      "source": "08_api_reference/stability.md",
+      "output": "stability.html",
+      "sha256": "ec0732e65d0e617b6930c27c203aa0d3704c2ad48d732f6d4f7d01d79b6e807f"
+    },
+    {
+      "source": "08_api_reference/type-index.md",
+      "output": "type-index.html",
+      "sha256": "b94f4c284fd163c8741118650653c3fad9c917caf1d47dca4d1bab4e02f8aaef"
+    },
+    {
+      "source": "08_api_reference/typed-edge-matrix.md",
+      "output": "typed-edge-matrix.html",
+      "sha256": "b925a20c279f8e8d99562866f780320c57968159ee04068629bf51f7537b8be9"
+    }
+  ]
+}

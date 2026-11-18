@@ -1,0 +1,50 @@
+schema_version: 1
+profile_id: slurm-site-default
+backend: slurm
+
+slurm:
+  account: bioinformatics
+  default_partition: compute
+  high_memory_partition: highmem
+  qos: normal
+  max_submitted_jobs: 150
+  status_poll_seconds: 40
+  use_job_arrays: true
+  array_limit: 500
+  requeue_transient_failures: true
+  keep_failed_logs_days: 30
+
+limits:
+  max_cpus_per_task: 48
+  max_memory_mb: 512000
+  max_runtime_minutes: 4320
+  max_concurrent_tasks: 150
+
+container:
+  runtime: apptainer
+  clean_environment: true
+  image_cache: /shared/nextneopi/images
+  require_digest: true
+  network: disabled
+
+storage:
+  work_uri: /shared/nextneopi/work
+  cache_uri: /shared/nextneopi/cache
+  scratch_uri: /scratch/${USER}/nextneopi
+  shared_filesystem_latency_seconds: 15
+  stage_to_node_scratch: true
+  atomic_publish: true
+
+resource_classes:
+  small:
+    partition: compute
+    memory_mb: 4096
+    runtime_minutes: 30
+  compute:
+    partition: compute
+    memory_mb: 32000
+    runtime_minutes: 720
+  highmem:
+    partition: highmem
+    memory_mb: 128000
+    runtime_minutes: 1440

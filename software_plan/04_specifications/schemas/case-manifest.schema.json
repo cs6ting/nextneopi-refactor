@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nextneopi.example/schemas/case-manifest-v1.json",
+  "title": "nextNEOpi Normalized CaseManifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "manifest_id", "cases"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "manifest_id": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+$"},
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/case"}
+    }
+  },
+  "$defs": {
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["case_id", "samples"],
+      "properties": {
+        "case_id": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+$"},
+        "samples": {
+          "type": "array",
+          "minItems": 2,
+          "items": {"$ref": "#/$defs/sample"}
+        },
+        "custom_hla_uri": {"type": ["string", "null"]}
+      }
+    },
+    "sample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sample_id", "role", "sex", "assay", "libraries"],
+      "properties": {
+        "sample_id": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+$"},
+        "role": {"enum": ["TUMOR_DNA", "NORMAL_DNA", "TUMOR_RNA"]},
+        "sex": {"enum": ["XX", "XY", "UNKNOWN"]},
+        "assay": {"enum": ["WES", "WGS"]},
+        "libraries": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/library"}}
+      }
+    },
+    "library": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["library_id", "molecule", "layout", "inputs"],
+      "properties": {
+        "library_id": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+$"},
+        "molecule": {"enum": ["DNA", "RNA"]},
+        "layout": {"enum": ["SINGLE_END", "PAIRED_END"]},
+        "protocol": {"type": ["string", "null"]},
+        "inputs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/input"}}
+      }
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "uri"],
+      "properties": {
+        "kind": {"enum": ["FASTQ_R1", "FASTQ_R2", "BAM"]},
+        "uri": {"type": "string", "minLength": 1},
+        "lane": {"type": ["string", "null"]},
+        "checksum": {"type": ["string", "null"], "pattern": "^sha256:[a-f0-9]{64}$"}
+      }
+    }
+  }
+}
